@@ -3,13 +3,13 @@ import { View, Text, Image, ImageBackground, ScrollView, TouchableOpacity } from
 
 import { connect } from 'react-redux';
 import { ConnectState } from 'models/connect';
-import GlobalStyles, { HomeStyles } from 'styles/index.css'
+import GlobalStyles from 'styles/index.css';
 
-export interface TestProps {
+export interface FaceProps {
   user: any;
 }
 
-class Test extends React.Component<TestProps> {
+class Face extends React.Component<FaceProps> {
   render() {
     const { navigation } = this.props;
     return (
@@ -24,4 +24,4 @@ export default connect(({ home }: ConnectState) => {
   return {
     user: home.user,
   }
-})(Test);
+})(Face);

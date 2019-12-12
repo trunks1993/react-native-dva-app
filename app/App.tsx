@@ -1,11 +1,11 @@
 import * as React from 'react';
-import {Provider} from 'react-redux';
+import { Provider } from 'react-redux';
 import createLoading from 'dva-loading';
+import { create } from 'dva-core';
 
-import {home, test} from './models/index';
+import { home, test } from './models/index';
 import Navigation from './routes'; //    这个是react-navigation路由文件
-
-import {create} from 'dva-core';
+import bgPage from 'assets/images/bg-page.png';
 
 const models = [home, test];
 
