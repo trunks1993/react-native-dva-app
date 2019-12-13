@@ -1,6 +1,8 @@
 import { StyleSheet } from 'react-native';
 import HomeStyles from './home.css';
 import NoticeStyles from './notice.css';
+import WarmPromptStyles from './warmPromptStyles.css';
+import FeelingStyles from './feelingStyles.css';
 
 const GlobalStyles = StyleSheet.create({
     container: {
@@ -50,6 +52,6 @@ const GlobalStyles = StyleSheet.create({
     titleRight: { fontSize: 20, color: '#ffffff' }
 })
 
-export { HomeStyles, NoticeStyles };
+export { HomeStyles, NoticeStyles, WarmPromptStyles, FeelingStyles };
 
 export default GlobalStyles;
