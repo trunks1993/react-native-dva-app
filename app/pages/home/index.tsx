@@ -45,7 +45,7 @@ class Home extends React.Component<HomeProps> {
                 </TouchableOpacity>
               </ImageBackground>
               <ImageBackground source={homeBgBtn2} style={[HomeStyles.backImg, HomeStyles.marginLR100]}>
-                <TouchableOpacity onPress={() => navigation.navigate('Test')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Feeling')}>
                   <View style={HomeStyles.btnView}>
                     <Image style={HomeStyles.btnImg} source={require('assets/images/home-icon-btn2.png')} />
                     <Text style={[{fontSize: 28, color: '#F7D454'}]}>每日心情</Text>
@@ -53,7 +53,7 @@ class Home extends React.Component<HomeProps> {
                 </TouchableOpacity>
               </ImageBackground>
               <ImageBackground source={homeBgBtn3} style={HomeStyles.backImg}>
-                <TouchableOpacity onPress={() => navigation.navigate('Test')}>
+                <TouchableOpacity onPress={() => navigation.navigate('WarmPrompt')}>
                   <View style={HomeStyles.btnView}>
                     <Image style={HomeStyles.btnImg} source={require('assets/images/home-icon-btn3.png')} />
                     <Text style={[{fontSize: 28, color: '#68E3AF'}]}>温馨提示</Text>

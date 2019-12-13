@@ -7,11 +7,15 @@ import Test from 'pages/test';
 import Face from 'pages/face';
 import Notice from 'pages/notice';
 import NoticeDetail from 'pages/notice/noticeDetail';
+import WarmPrompt from 'pages/warmPrompt'
+import Feeling from 'pages/feeling'
 
-let Stack = createStackNavigator({
+const Stack = createStackNavigator({
   Home,
   Notice,
   NoticeDetail,
+  WarmPrompt,
+  Feeling,
   // Test,
   // Face,
 }, {

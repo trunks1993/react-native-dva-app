@@ -3,7 +3,11 @@ import { View, Text, Image, ImageBackground, ScrollView, TouchableOpacity } from
 
 import { connect } from 'react-redux';
 import { ConnectState } from 'models/connect';
-import GlobalStyles, { HomeStyles } from 'styles/index.css'
+import GlobalStyles, { HomeStyles } from 'styles/index.css';
+import Header from 'components/Header';
+
+// 图片引入
+import bgPage from 'assets/images/bg-page.png';
 
 export interface TestProps {
   user: any;
@@ -13,15 +17,12 @@ class Test extends React.Component<TestProps> {
   render() {
     const { navigation } = this.props;
     return (
-      <ImageBackground source={require('assets/images/bg-page.png')} style={GlobalStyles.container}>
-        
-      </ImageBackground >
+      <ImageBackground source={bgPage} style={GlobalStyles.container}>
+        <Header navigate={navigation.navigate} title="测试" allowBack={true} backPage="Notice" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
+
+      </ImageBackground>
     )
   }
 }
 
-export default connect(({ home }: ConnectState) => {
-  return {
-    user: home.user,
-  }
-})(Test);
+export default connect()(Test);
