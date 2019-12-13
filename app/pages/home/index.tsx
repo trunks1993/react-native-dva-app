@@ -27,7 +27,7 @@ class Home extends React.Component<HomeProps> {
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
         <View style={HomeStyles.header}>
           <Image source={bgTitle} />
-          <Text style={HomeStyles.headTitle}>通知通告</Text>
+          <Text style={HomeStyles.headTitle}>首页</Text>
         </View>
         <View style={HomeStyles.clock}>
           <Text style={GlobalStyles.font_52}>15:20</Text>
@@ -79,7 +79,7 @@ class Home extends React.Component<HomeProps> {
                 </TouchableOpacity>
               </ImageBackground>
               <ImageBackground source={homeBgBtn6} style={HomeStyles.backImg}>
-                <TouchableOpacity onPress={() => navigation.navigate('Test')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Living')}>
                   <View style={HomeStyles.btnView}>
                     <Image style={HomeStyles.btnImg} source={require('assets/images/home-icon-btn6.png')} />
                     <Text style={[{fontSize: 28, color: '#FBA163'}]}>生活规范</Text>

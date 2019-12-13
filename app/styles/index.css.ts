@@ -1,8 +1,9 @@
 import { StyleSheet } from 'react-native';
 import HomeStyles from './home.css';
 import NoticeStyles from './notice.css';
-import WarmPromptStyles from './warmPromptStyles.css';
-import FeelingStyles from './feelingStyles.css';
+import WarmPromptStyles from './warmPrompt.css';
+import FeelingStyles from './feeling.css';
+import LivingStyles from './living.css';
 
 const GlobalStyles = StyleSheet.create({
     container: {
@@ -52,6 +53,6 @@ const GlobalStyles = StyleSheet.create({
     titleRight: { fontSize: 20, color: '#ffffff' }
 })
 
-export { HomeStyles, NoticeStyles, WarmPromptStyles, FeelingStyles };
+export { HomeStyles, NoticeStyles, WarmPromptStyles, FeelingStyles, LivingStyles };
 
 export default GlobalStyles;
