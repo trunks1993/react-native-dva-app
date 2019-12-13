@@ -35,7 +35,7 @@ export default StyleSheet.create({
         // right: 78,
         padding: 50,
         paddingBottom: 5,
-        height: 500,
+        height: 571,
         marginTop: 18,
         marginLeft: 78,
         marginRight: 78,
