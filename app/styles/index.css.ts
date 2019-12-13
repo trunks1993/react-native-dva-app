@@ -31,6 +31,23 @@ const GlobalStyles = StyleSheet.create({
         marginLeft: 31,
         fontSize: 20,
     },
+    // components
+    // header
+    header: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingRight: 30,
+    },
+    headerLeft: {  
+        display: 'flex',
+        flexDirection: "row",
+        alignItems: 'center',
+        height: 63,
+        width: 260,
+    },
+    titleRight: { fontSize: 20, color: '#ffffff' }
 })
 
 export { HomeStyles, NoticeStyles };

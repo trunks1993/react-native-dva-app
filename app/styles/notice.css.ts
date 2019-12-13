@@ -9,7 +9,6 @@ export default StyleSheet.create({
         paddingRight: 30,
     },
     headTitle: {  
-        position: 'absolute',
         display: 'flex',
         flexDirection: "row",
         alignItems: 'center',
@@ -22,33 +21,32 @@ export default StyleSheet.create({
         marginRight: 10,
     },
     btnTools: {
-        height: 65,
+        // height: 65,
         marginTop: 46,
-        backgroundColor: 'red',
+        display: 'flex',
+        flexDirection: 'row',
+        paddingLeft: 78,
+        alignItems: 'center',
+    },
+    btn: {
+        width: 180,
+        height: 64,
+        marginRight: 82,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    btnText: {
+        color: '#70D6FC',
+        fontSize: 24,
     },
     content: {
-        // position: 'absolute',
-        // backgroundColor: 'blue',
-        // top: 191,
-        // bottom: 38,
-        // left: 78,
-        // right: 78,
         padding: 50,
         paddingBottom: 5,
-        height: 500,
+        height: 571,
         marginTop: 18,
         marginLeft: 78,
         marginRight: 78,
     },
-    // contentImg: {
-    //     position: 'absolute',
-    //     top: 0,
-    //     left: 0,
-    //     right: 0,
-
-    //     // height: '100%',
-    //     // width: '100%',
-    // },
     newsTitleBox: {
         display: 'flex',
         flexDirection: 'row',
@@ -66,4 +64,34 @@ export default StyleSheet.create({
         fontSize: 20,
         color: '#ffffff'
     },
+    // noticeDetail
+    info: {
+        height: 660,
+        marginTop: 33,
+        marginLeft: 80,
+        marginRight: 80,
+        paddingLeft: 60,
+        paddingRight: 60,
+    },
+    detailTitleBox: {
+        height: 139,
+        borderBottomWidth: 1,
+        borderBottomColor: '#1AC4C6',
+        paddingTop: 43,
+    },
+    detailTitle: {
+        color: '#ffffff',
+        fontSize: 30,
+        lineHeight: 30,
+    },
+    detailTime: {
+        color: '#ffffff',
+        fontSize: 20,
+        lineHeight: 20,
+        marginTop: 21,
+    },
+    detailContentBox: {
+        marginTop: 30,
+        height: 480,
+    }
 })
