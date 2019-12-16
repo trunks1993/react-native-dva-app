@@ -16,15 +16,12 @@ import {
   Table,
   Row,
   Rows,
-  TableWrapper,
-  Col,
-  Cols,
-  Cell,
 } from 'react-native-table-component';
 import LinearGradient from 'react-native-linear-gradient';
 
 // 图片引入
 import bgPage from 'assets/images/bg-page.png';
+import contPage from 'assets/images/contBg.png';
 import baseInfo from 'assets/images/baseInfo.png';
 import baseInfoActive from 'assets/images/baseInfo-active.png';
 import xqInfo from 'assets/images/xqInfo.png';
@@ -37,36 +34,171 @@ export interface SearchProps {
 
 class Mine extends React.Component<SearchProps> {
   state = {
-    activeTab: 1,
+    pageTotal: 50,
   };
-  handleSetActiveTab = activeTab => {
-    this.setState({activeTab});
+  elementButton = (value: any) => {
+    if (value === 1) {
+      return (
+        <View>
+          <Text style={{color: '#7AFC70', textAlign: 'center'}}>待谈话</Text>
+        </View>
+      );
+    } else if (value === 2) {
+      return (
+        <View>
+          <Text style={{color: '#959595', textAlign: 'center'}}>已取消</Text>
+        </View>
+      );
+    }
+    return (
+      <View style={{ flexDirection: 'row',justifyContent: 'center' }}>
+        <Text style={{color: '#F9D34F', marginRight: 20}}>安排中</Text>
+        <Text style={{color: '#CD2B2B', textDecorationLine:'underline', textDecorationColor: '#CD2B2B' }}>取消</Text>
+      </View>
+    );
   };
   render() {
     const {navigation} = this.props;
-    const {activeTab} = this.state;
-    const tableHead = ['姓名', '关系', '工作单位', '住址', '联系电话'];
+    const tableHead = [
+      '预约对象',
+      '职务',
+      '姓名',
+      '预约时间',
+      '预约状态',
+      '安排谈话时间',
+      '谈话结束时间',
+    ];
     const tableData = [
       [
-        '1李李',
-        '夫妻',
-        '**省**科技有限公司',
-        '**省**市**区**街道**小区*栋*楼 拷贝 2',
-        '13655558598',
+        '民警',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(1),
+        '2019-12-05 15:00:00',
+        '2019-12-05 15:00:00',
       ],
       [
-        '1李李',
-        '夫妻',
-        '**省**科技有限公司',
-        '**省**市**区**街道**小区*栋*楼 拷贝 2',
-        '13655558598',
+        '监区领导',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(2),
+        '- -',
+        '- -',
       ],
       [
-        '1李李',
-        '夫妻',
-        '**省**科技有限公司',
-        '**省**市**区**街道**小区*栋*楼 拷贝 2',
-        '13655558598',
+        '监区领导',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(3),
+        '- -',
+        '- -',
+      ],[
+        '民警',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(1),
+        '2019-12-05 15:00:00',
+        '2019-12-05 15:00:00',
+      ],
+      [
+        '监区领导',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(2),
+        '- -',
+        '- -',
+      ],
+      [
+        '监区领导',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(3),
+        '- -',
+        '- -',
+      ],[
+        '民警',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(1),
+        '2019-12-05 15:00:00',
+        '2019-12-05 15:00:00',
+      ],
+      [
+        '监区领导',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(2),
+        '- -',
+        '- -',
+      ],
+      [
+        '监区领导',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(3),
+        '- -',
+        '- -',
+      ],[
+        '民警',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(1),
+        '2019-12-05 15:00:00',
+        '2019-12-05 15:00:00',
+      ],
+      [
+        '监区领导',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(2),
+        '- -',
+        '- -',
+      ],
+      [
+        '监区领导',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(3),
+        '- -',
+        '- -',
+      ],[
+        '民警',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(1),
+        '2019-12-05 15:00:00',
+        '2019-12-05 15:00:00',
+      ],
+      [
+        '监区领导',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(2),
+        '- -',
+        '- -',
+      ],
+      [
+        '监区领导',
+        '警员',
+        '李四',
+        '2019-12-05 15:00:00',
+        this.elementButton(3),
+        '- -',
+        '- -',
       ],
     ];
     return (
@@ -78,10 +210,40 @@ class Mine extends React.Component<SearchProps> {
           backPage="Home"
           titleRight="0502监室  |  2019年12月3日 星期二    15:20"
         />
-        <View style={OrderStyles.content}>
-            <View>
+        <View style={OrderStyles.mo_content}>
+          <ImageBackground source={contPage} style={OrderStyles.tableContainer}>
+            <View style={OrderStyles.tableArea}>
+              <View style={{ flexDirection: 'row-reverse' }}>
+                <Text style={{color: '#70D6FC'}}>
+                  共{' '}
+                  <Text style={{color: '#FFAE00'}}>{this.state.pageTotal}</Text>{' '}
+                  条
+                </Text>
+              </View>
+              <ScrollView style={{ height: 500}}>
+
+              <Table borderStyle={{borderWidth: 2, borderColor: '#00C0FE'}}>
+                <Row
+                  data={tableHead}
+                  flexArr={[2, 1, 1, 3, 2, 3, 3]}
+                  style={OrderStyles.tableRow}
+                  textStyle={OrderStyles.tableHeadText}
+                />
+                    {tableData.map((rowData, index) => (
+                    <Row
+                        key={index}
+                        data={rowData}
+                        flexArr={[2, 1, 1, 3, 2, 3, 3]}
+                        style={OrderStyles.tableRow}
+                        textStyle={OrderStyles.tableContText}
+                    />
+                    ))}
                 
+              </Table>
+              </ScrollView>
+
             </View>
+          </ImageBackground>
         </View>
       </ImageBackground>
     );
