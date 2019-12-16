@@ -40,15 +40,6 @@ class NoticeDetail extends React.Component<NoticeDetailProps, NoticeDetailStates
     const { noticeInfo } = this.state;
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
-        {/* <View style={NoticeStyles.header}>
-          <TouchableOpacity onPress={() => navigation.navigate('Notice')}>
-            <ImageBackground source={bgTitle} style={NoticeStyles.headTitle}>
-              <Image style={NoticeStyles.iconBack} source={iconBack} />
-              <Text style={{ fontSize: 32, color: '#ffffff' }}>通知通告</Text>
-            </ImageBackground>
-          </TouchableOpacity>
-          <Text style={{ fontSize: 20, color: '#ffffff' }}>0502监室  |  2019年12月3日 星期二    15:20</Text>
-        </View> */}
         <Header navigate={navigation.navigate} title="通知通告" allowBack={true} backPage="Notice" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
         <ImageBackground source={noticeBgList} imageStyle={{ resizeMode: 'stretch' }} style={NoticeStyles.info}>
           <View style={NoticeStyles.detailTitleBox}>

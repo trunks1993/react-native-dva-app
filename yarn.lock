@@ -5290,6 +5290,11 @@ react-native-safe-area-view@^0.14.1:
   dependencies:
     debounce "^1.2.0"
 
+react-native-table-component@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.npm.taobao.org/react-native-table-component/download/react-native-table-component-1.2.1.tgz#5f1e0f159b1dff9df0d5601c4a5ab99d1aa99a25"
+  integrity sha1-Xx4PFZsd/53w1WAcSlq5nRqpmiU=
+
 react-native@0.61.5:
   version "0.61.5"
   resolved "https://registry.npm.taobao.org/react-native/download/react-native-0.61.5.tgz#6e21acb56cbd75a3baeb1f70201a66f42600bba8"

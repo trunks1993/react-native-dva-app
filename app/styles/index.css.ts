@@ -4,6 +4,7 @@ import NoticeStyles from './notice.css';
 import WarmPromptStyles from './warmPrompt.css';
 import FeelingStyles from './feeling.css';
 import LivingStyles from './living.css';
+import OrderStyles from './order.css';
 
 const GlobalStyles = StyleSheet.create({
     container: {
@@ -53,6 +54,6 @@ const GlobalStyles = StyleSheet.create({
     titleRight: { fontSize: 20, color: '#ffffff' }
 })
 
-export { HomeStyles, NoticeStyles, WarmPromptStyles, FeelingStyles, LivingStyles };
+export { HomeStyles, NoticeStyles, WarmPromptStyles, FeelingStyles, LivingStyles, OrderStyles };
 
 export default GlobalStyles;

@@ -10,6 +10,8 @@ import NoticeDetail from 'pages/notice/noticeDetail';
 import WarmPrompt from 'pages/warmPrompt'
 import Feeling from 'pages/feeling'
 import Living from 'pages/living'
+import Order from 'pages/order'
+import Search from 'pages/search'
 
 const Stack = createStackNavigator({
   Home,
@@ -18,6 +20,8 @@ const Stack = createStackNavigator({
   WarmPrompt,
   Feeling,
   Living,
+  Order,
+  Search,
   // Test,
   // Face,
 }, {
