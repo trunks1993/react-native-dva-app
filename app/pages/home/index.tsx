@@ -63,7 +63,7 @@ class Home extends React.Component<HomeProps> {
             </View>
             <View style={HomeStyles.buttonBox}>
               <ImageBackground source={homeBgBtn4} style={HomeStyles.backImg}>
-                <TouchableOpacity onPress={() => navigation.navigate('Face')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Order')}>
                   <View style={HomeStyles.btnView}>
                     <Image style={HomeStyles.btnImg} source={require('assets/images/home-icon-btn4.png')} />
                     <Text style={[{fontSize: 28, color: '#69DAD6'}]}>谈话预约</Text>
@@ -71,7 +71,7 @@ class Home extends React.Component<HomeProps> {
                 </TouchableOpacity>
               </ImageBackground>
               <ImageBackground source={homeBgBtn5} style={[HomeStyles.backImg, HomeStyles.marginLR100]}>
-                <TouchableOpacity onPress={() => navigation.navigate('Face')}>
+                <TouchableOpacity onPress={() => navigation.navigate('Search')}>
                   <View style={HomeStyles.btnView}>
                     <Image style={HomeStyles.btnImg} source={require('assets/images/home-icon-btn5.png')} />
                     <Text style={[{fontSize: 28, color: '#CB99FA'}]}>信息查询</Text>
