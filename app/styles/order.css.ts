@@ -55,5 +55,32 @@ export default StyleSheet.create({
     headText: {
         fontSize: 18,
         color: '#ffffff',
-    }
+    },
+    mo_content: {
+        display: 'flex',
+        padding: 60
+    },
+    tableContainer:{
+        width: '100%',
+        height: '100%'
+    },
+    tableArea: {
+        padding: 40
+    },
+    tableHeadText: {
+        textAlign: 'center',
+        color: '#70D6FC',
+        fontSize: 16
+     },
+     tableContText:{
+       textAlign: 'center',
+       color: '#fff',
+       fontSize: 16
+     },
+     tableRow: {
+         height: 40
+     },
+     cell: {
+         textAlign: 'center'
+     }
 })
