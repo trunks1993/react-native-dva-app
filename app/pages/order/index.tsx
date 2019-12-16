@@ -54,7 +54,7 @@ class Order extends React.Component<OrderProps> {
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
         <Header navigate={navigation.navigate} title="谈话预约" allowBack={true} backPage="Home" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
-        <TouchableOpacity onPress={() => { }}>
+        <TouchableOpacity onPress={() => {navigation.navigate('MyOrder') }}>
           <View style={OrderStyles.myOrderBox}>
             <Text style={OrderStyles.myOrder}>我的预约</Text>
           </View>
