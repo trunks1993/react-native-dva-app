@@ -2,32 +2,41 @@ import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   content: {
-    width: '100%',
-    height: '100%',
-    padding: 60,
+    width: 1140,
+    height: 645,
+    marginLeft: 60,
+    marginTop: 40,
+    display: 'flex',
+    alignItems: "center",
+    justifyContent: 'center',
     flexDirection: 'row',
   },
   tabArea: {
-    width: '15%',
-    height: '100%',
-    marginRight: 2,
+    height: 645,
+    width: 180,
     flexDirection: 'column',
     backgroundColor: 'rgba(0,0,0,0.2)',
   },
+  tableArea: {
+    height: 645,
+    marginLeft: 2,
+    backgroundColor: 'rgba(0,0,0,0.2)',
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
   photoArea: {
-    width: '100%',
-    // height: 175,
-    padding: 20,
-    // backgroundColor: '#0579B9',
+    height: 222,
     borderColor: '#24A6FE',
     borderWidth: 1,
     borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   tabBtn: {
     width: '100%',
     height: 50,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   tabBtnActive: {
@@ -36,22 +45,18 @@ export default StyleSheet.create({
     backgroundColor: '#1E83EA',
     borderRadius: 40,
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center',
   },
   btnText: {
     fontSize: 20,
-    color: '#fff'
+    color: '#fff',
+    marginLeft: 10,
   },
   btnActiveText: {
     fontSize: 20,
-    color: '#70F7FC'
-  },
-  tableArea: {
-    // width: '85%',
-    // height: '100%',
-    flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.2)',
+    color: '#70F7FC',
+    marginLeft: 10,
   },
   tableHeadText: {
     textAlign: 'center',

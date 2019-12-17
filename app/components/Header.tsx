@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Text, Image, ImageBackground, ScrollView, TouchableOpacity, BVLinearGradient, Button } from 'react-native';
 import { produce, Draft } from 'immer';
+import { NavigationInjectedProps } from "react-navigation";
 
 import { connect } from 'react-redux';
 import { ConnectState } from 'models/connect';
@@ -16,6 +17,9 @@ export interface HeaderProps {
   backPage: string;
   title: string;
   titleRight: string;
+  navigate(
+    routeNameOrOptions: string
+  ): boolean;
 }
 
 export interface HeaderStates {

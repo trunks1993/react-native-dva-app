@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { View, Text, Image, ImageBackground, ScrollView, TouchableOpacity } from 'react-native';
+import { NavigationInjectedProps } from "react-navigation";
 
 import { connect } from 'react-redux';
 import { ConnectState } from 'models/connect';
@@ -9,7 +10,7 @@ import Header from 'components/Header';
 // 图片引入
 import bgPage from 'assets/images/bg-page.png';
 
-export interface TestProps {
+export interface TestProps extends NavigationInjectedProps {
   user: any;
 }
 

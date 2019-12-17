@@ -20,6 +20,10 @@ import LinearGradient from 'react-native-linear-gradient';
 
 import { SearchStyles } from 'styles/index.css';
 
+export interface BaseTableProps {
+  
+}
+
 class BaseTable extends React.Component<BaseTableProps> {
 
   render() {

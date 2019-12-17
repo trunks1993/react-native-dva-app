@@ -50,7 +50,6 @@ export default StyleSheet.create({
     head: {
         width: 155,
         height: 171,
-        backgroundColor: 'red',
     },
     headText: {
         fontSize: 18,

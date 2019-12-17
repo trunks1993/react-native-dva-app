@@ -11,7 +11,6 @@ export interface FaceProps {
 
 class Face extends React.Component<FaceProps> {
   render() {
-    const { navigation } = this.props;
     return (
       <ImageBackground source={require('assets/images/bg-page.png')} style={GlobalStyles.container}>
         

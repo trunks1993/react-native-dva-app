@@ -7,37 +7,58 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import { produce, Draft } from 'immer';
 
 import { connect } from 'react-redux';
 import { ConnectState } from 'models/connect';
+import { NavigationInjectedProps } from 'react-navigation';
+
 import GlobalStyles, { SearchStyles } from 'styles/index.css';
 import Header from 'components/Header';
 
 import LinearGradient from 'react-native-linear-gradient';
 import BaseTable from './BaseTable';
+import ServingTable from './ServingTable';
+import ExamineTable from './ExamineTable';
+
+import { TAB_BASE_INFO, TAB_SERVING_INFO, TAB_EXAMINE_INFO } from 'const';
 
 // 图片引入
 import bgPage from 'assets/images/bg-page.png';
+import systemImgHead from 'assets/images/system-img-head.png';
 import baseInfo from 'assets/images/baseInfo.png';
 import baseInfoActive from 'assets/images/baseInfo-active.png';
 import xqInfo from 'assets/images/xqInfo.png';
 import xqInfoActive from 'assets/images/xqInfo-active.png';
 import scoreInfo from 'assets/images/scoreInfo.png';
 import scoreInfoActive from 'assets/images/scoreInfo-active.png';
-export interface SearchProps {
-  user: any;
+export interface SearchProps extends NavigationInjectedProps {
 }
 
-class Search extends React.Component<SearchProps> {
-  state = {
-    activeTab: 1,
+export interface SearchStates {
+  activeTab: string,
+  tabMap: { [key: string]: React.ReactNode }
+}
+
+class Search extends React.Component<SearchProps, SearchStates> {
+  state: SearchStates = {
+    activeTab: TAB_BASE_INFO,
+    tabMap: {
+      [TAB_BASE_INFO]: <BaseTable />,
+      [TAB_SERVING_INFO]: <ServingTable />,
+      [TAB_EXAMINE_INFO]: <ExamineTable />,
+    }
   };
-  handleSetActiveTab = activeTab => {
-    this.setState({ activeTab });
+  
+  handleSetActiveTab: (activeTab: string) => void = (activeTab) => {
+    this.setState(produce((draft: Draft<SearchStates>, { }): void => {
+      draft.activeTab = activeTab;
+    }))
   };
+
   render() {
     const { navigation } = this.props;
-    const { activeTab } = this.state;
+    const { activeTab, tabMap } = this.state;
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
         <Header
@@ -56,31 +77,29 @@ class Search extends React.Component<SearchProps> {
               <View style={SearchStyles.photoArea}>
                 <Image
                   style={{ width: 130, height: 175 }}
-                  source={require('../../assets/images/bg-page.png')}
+                  source={systemImgHead}
                 />
               </View>
             </LinearGradient>
             <View
               style={{
-                width: '100%',
-                height: '50%',
-                flexDirection: 'column',
+                height: 425,
                 justifyContent: 'space-around',
               }}>
-              <TouchableOpacity onPress={() => this.handleSetActiveTab(1)}>
+              <TouchableOpacity onPress={() => this.handleSetActiveTab(TAB_BASE_INFO)}>
                 <View
                   style={
-                    activeTab === 1
+                    activeTab === TAB_BASE_INFO
                       ? SearchStyles.tabBtnActive
                       : SearchStyles.tabBtn
                   }>
                   <Image
                     style={{ width: 24, height: 18 }}
-                    source={activeTab === 1 ? baseInfoActive : baseInfo}
+                    source={activeTab === TAB_BASE_INFO ? baseInfoActive : baseInfo}
                   />
                   <Text
                     style={
-                      activeTab === 1
+                      activeTab === TAB_BASE_INFO
                         ? SearchStyles.btnActiveText
                         : SearchStyles.btnText
                     }>
@@ -88,20 +107,20 @@ class Search extends React.Component<SearchProps> {
                     </Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.handleSetActiveTab(2)}>
+              <TouchableOpacity onPress={() => this.handleSetActiveTab(TAB_SERVING_INFO)}>
                 <View
                   style={
-                    activeTab === 2
+                    activeTab === TAB_SERVING_INFO
                       ? SearchStyles.tabBtnActive
                       : SearchStyles.tabBtn
                   }>
                   <Image
                     style={{ width: 24, height: 18 }}
-                    source={activeTab === 2 ? xqInfoActive : xqInfo}
+                    source={activeTab === TAB_SERVING_INFO ? xqInfoActive : xqInfo}
                   />
                   <Text
                     style={
-                      activeTab === 2
+                      activeTab === TAB_SERVING_INFO
                         ? SearchStyles.btnActiveText
                         : SearchStyles.btnText
                     }>
@@ -109,20 +128,20 @@ class Search extends React.Component<SearchProps> {
                     </Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress={() => this.handleSetActiveTab(3)}>
+              <TouchableOpacity onPress={() => this.handleSetActiveTab(TAB_EXAMINE_INFO)}>
                 <View
                   style={
-                    activeTab === 3
+                    activeTab === TAB_EXAMINE_INFO
                       ? SearchStyles.tabBtnActive
                       : SearchStyles.tabBtn
                   }>
                   <Image
                     style={{ width: 24, height: 18 }}
-                    source={activeTab === 3 ? scoreInfoActive : scoreInfo}
+                    source={activeTab === TAB_EXAMINE_INFO ? scoreInfoActive : scoreInfo}
                   />
                   <Text
                     style={
-                      activeTab === 3
+                      activeTab === TAB_EXAMINE_INFO
                         ? SearchStyles.btnActiveText
                         : SearchStyles.btnText
                     }>
@@ -133,7 +152,7 @@ class Search extends React.Component<SearchProps> {
             </View>
           </View>
           <ScrollView>
-            <BaseTable />
+            {tabMap[activeTab]}
           </ScrollView>
         </View>
       </ImageBackground>

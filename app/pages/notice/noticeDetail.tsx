@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import { ConnectState } from 'models/connect';
 import { FlatList } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import { NavigationInjectedProps } from 'react-navigation';
+
 import GlobalStyles, { NoticeStyles } from 'styles/index.css';
 // 图片引入
 import bgPage from 'assets/images/bg-page.png';
@@ -17,7 +19,7 @@ import noticeBgBtn from 'assets/images/notice-bg-btn.png';
 import noticeBgBtnActive from 'assets/images/notice-bg-btn-active.png';
 import Header from 'components/Header';
 
-export interface NoticeDetailProps {
+export interface NoticeDetailProps extends NavigationInjectedProps {
 }
 
 export interface NoticeDetailStates {
@@ -37,7 +39,7 @@ class NoticeDetail extends React.Component<NoticeDetailProps, NoticeDetailStates
 
   render() {
     const { navigation } = this.props;
-    const { noticeInfo } = this.state;
+    const noticeInfo = navigation.getParam('item');
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
         <Header navigate={navigation.navigate} title="通知通告" allowBack={true} backPage="Notice" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
