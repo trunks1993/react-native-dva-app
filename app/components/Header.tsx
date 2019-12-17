@@ -42,7 +42,7 @@ class Header extends React.Component<HeaderProps, HeaderStates> {
         <TouchableOpacity onPress={this.handleNavigate}>
           <ImageBackground source={bgTitle} style={GlobalStyles.headerLeft}>
             {allowBack && <Image style={GlobalStyles.iconBack} source={iconBack} />}
-            <Text style={{ fontSize: 32, color: '#ffffff' }}>{title}</Text>
+            <Text style={{ fontSize: 32, color: '#ffffff', marginLeft: !allowBack ? 50 : 0}}>{title}</Text>
           </ImageBackground>
         </TouchableOpacity>
         <Text style={GlobalStyles.titleRight}>{titleRight}</Text>
