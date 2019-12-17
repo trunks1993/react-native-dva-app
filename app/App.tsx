@@ -5,7 +5,6 @@ import { create } from 'dva-core';
 
 import { home, test } from './models/index';
 import Navigation from './routes'; //    这个是react-navigation路由文件
-import bgPage from 'assets/images/bg-page.png';
 
 const models = [home, test];
 
@@ -23,10 +22,11 @@ app.start(); // 实例初始化
 const store = app._store; // 获取redux的store对象供react-redux使用
 
 export default class App extends React.Component {
+
   render() {
     return (
       <Provider store={store}>
-        <Navigation />
+          <Navigation />
       </Provider>
     );
   }

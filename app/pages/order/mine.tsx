@@ -204,7 +204,7 @@ class Mine extends React.Component<SearchProps> {
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
         <Header
-          navigate={navigation.navigate}
+          replace={navigation.replace}
           title="我的预约"
           allowBack={true}
           backPage="Home"

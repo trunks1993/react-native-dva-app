@@ -94,7 +94,7 @@ class Notice extends React.Component<NoticeProps, NoticeStates> {
     const { newsMap, activeTab } = this.state;
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
-        <Header navigate={navigation.navigate} title="通知通告" allowBack={true} backPage="Home" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
+        <Header replace={navigation.replace} title="通知通告" allowBack={true} backPage="Home" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
         <View style={NoticeStyles.btnTools}>
           <TouchableOpacity onPress={() => this.handleSetActiveTab(TAB_SHORT_NOTICE)}>
             <ImageBackground source={activeTab === TAB_SHORT_NOTICE ? noticeBgBtnActive : noticeBgBtn} style={NoticeStyles.btn}>

@@ -42,7 +42,7 @@ class NoticeDetail extends React.Component<NoticeDetailProps, NoticeDetailStates
     const noticeInfo = navigation.getParam('item');
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
-        <Header navigate={navigation.navigate} title="通知通告" allowBack={true} backPage="Notice" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
+        <Header replace={navigation.replace} title="通知通告" allowBack={true} backPage="Notice" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
         <ImageBackground source={noticeBgList} imageStyle={{ resizeMode: 'stretch' }} style={NoticeStyles.info}>
           <View style={NoticeStyles.detailTitleBox}>
             <Text style={NoticeStyles.detailTitle}>{noticeInfo.title}</Text>

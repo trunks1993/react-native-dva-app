@@ -33,14 +33,14 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   tabBtn: {
-    width: '100%',
+    width: 170,
     height: 50,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
   },
   tabBtnActive: {
-    width: '100%',
+    width: 170,
     height: 50,
     backgroundColor: '#1E83EA',
     borderRadius: 40,

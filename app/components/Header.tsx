@@ -17,7 +17,7 @@ export interface HeaderProps {
   backPage: string;
   title: string;
   titleRight: string;
-  navigate(
+  replace(
     routeNameOrOptions: string
   ): boolean;
 }
@@ -31,8 +31,8 @@ class Header extends React.Component<HeaderProps, HeaderStates> {
   }
 
   handleNavigate = () => {
-    const { allowBack, backPage, navigate } = this.props;
-    allowBack && navigate(backPage);
+    const { allowBack, backPage, replace } = this.props;
+    allowBack && replace(backPage);
   }
 
   render() {

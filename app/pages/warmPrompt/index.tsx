@@ -50,7 +50,7 @@ class WarmPrompt extends React.Component<WarmPromptProps, WarmPromptStates> {
 
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
-        <Header navigate={navigation.navigate} title="温馨提示" allowBack={true} backPage="Home" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
+        <Header replace={navigation.replace} title="温馨提示" allowBack={true} backPage="Home" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
         <ImageBackground source={warmBgModal} style={WarmPromptStyles.modal}>
             <ImageBackground source={warmBgTitle} style={WarmPromptStyles.titleBox}>
                 <Text style={WarmPromptStyles.title}>温馨提示</Text>

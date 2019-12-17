@@ -13,6 +13,8 @@ import Living from 'pages/living';
 import Order from 'pages/order';
 import Search from 'pages/search';
 import MyOrder from 'pages/order/mine';
+import Await from 'pages/await';
+
 const Stack = createStackNavigator({
   Home,
   Notice,
@@ -22,9 +24,8 @@ const Stack = createStackNavigator({
   Living,
   Order,
   Search,
-  MyOrder
-  // Test,
-  // Face,
+  MyOrder,
+  Await,
 }, {
   defaultNavigationOptions: {
     header: null,

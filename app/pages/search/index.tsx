@@ -62,7 +62,7 @@ class Search extends React.Component<SearchProps, SearchStates> {
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
         <Header
-          navigate={navigation.navigate}
+          replace={navigation.replace}
           title="信息查询"
           allowBack={true}
           backPage="Home"
@@ -85,6 +85,7 @@ class Search extends React.Component<SearchProps, SearchStates> {
               style={{
                 height: 425,
                 justifyContent: 'space-around',
+                alignItems: 'center',
               }}>
               <TouchableOpacity onPress={() => this.handleSetActiveTab(TAB_BASE_INFO)}>
                 <View

@@ -6,12 +6,11 @@ import FeelingStyles from './feeling.css';
 import LivingStyles from './living.css';
 import OrderStyles from './order.css';
 import SearchStyles from './search.css';
+import AwaitStyles from './await.css';
 
 const GlobalStyles = StyleSheet.create({
     container: {
         flex: 1,
-        width: null,
-        height: null,
         backgroundColor: 'rgba(0,0,0,0)',
     },
     titleIcon: {
@@ -55,6 +54,6 @@ const GlobalStyles = StyleSheet.create({
     titleRight: { fontSize: 20, color: '#ffffff' }
 })
 
-export { HomeStyles, NoticeStyles, WarmPromptStyles, FeelingStyles, LivingStyles, OrderStyles, SearchStyles };
+export { HomeStyles, NoticeStyles, WarmPromptStyles, FeelingStyles, LivingStyles, OrderStyles, SearchStyles, AwaitStyles };
 
 export default GlobalStyles;

@@ -4,13 +4,14 @@ import { View, Text, Image, ImageBackground, ScrollView, TouchableOpacity } from
 import { connect } from 'react-redux';
 import { ConnectState } from 'models/connect';
 import GlobalStyles, { LivingStyles } from 'styles/index.css';
-import Header from 'components/Header';
+import { NavigationInjectedProps } from 'react-navigation';
 
 // 图片引入
 import bgPage from 'assets/images/bg-page.png';
-const livingImgHorn = require('assets/images/living-img-horn.gif');
+// const livingImgHorn = require('assets/images/living-img-horn.gif');
+import livingImgHorn from 'assets/images/living-img-horn.gif';
 
-export interface LivingProps {
+export interface LivingProps extends NavigationInjectedProps {
   user: any;
 }
 
@@ -24,7 +25,7 @@ class Living extends React.Component<LivingProps> {
             <Text style={LivingStyles.time}>15:20</Text>
             <Text style={LivingStyles.date}>2019年12月3日 星期二</Text>
           </View>
-          <Image style={{marginLeft: 200}} source={require('assets/images/living-img-horn.gif')}/>
+          <Image style={{marginLeft: 200}} source={livingImgHorn}/>
       </ImageBackground>
     )
   }
