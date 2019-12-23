@@ -19,6 +19,8 @@ import bgPage from 'assets/images/bg-page.png';
 // import LeftLight from 'assets/images/call-img-leftlight.png';
 import LeftLight from 'assets/images/call-img-leftlight.gif';
 import RightLight from 'assets/images/call-img-rightlight.gif';
+import RightLight2 from 'assets/images/call-img-rightlight2.gif';
+
 
 export interface HomeProps extends NavigationInjectedProps {}
 
@@ -26,6 +28,7 @@ class startCommunicate extends React.Component<HomeProps> {
   state = {
     timer: null,
     msg: '正在建立通讯连接...',
+    status: 0
   };
 
   componentDidMount() {
@@ -38,7 +41,7 @@ class startCommunicate extends React.Component<HomeProps> {
 
   handleDebounce = () => {
     this.timer = setTimeout(() => {
-      this.setState({msg: '正在通讯中...'});
+      this.setState({msg: '正在通讯中...',status: 1});
     }, 5000);
   };
 
@@ -59,7 +62,7 @@ class startCommunicate extends React.Component<HomeProps> {
           <View style={CallStyles.rightBox}>
             <TouchableOpacity onPress={() => navigation.replace('Home')}>
               <ImageBackground
-                source={RightLight}
+                source={this.state.status === 0 ? RightLight: RightLight2}
                 style={CallStyles.rightlight}></ImageBackground>
             </TouchableOpacity>
             <Text style={{color: '#fff', fontSize: 23}}>{this.state.msg}</Text>
