@@ -133,4 +133,56 @@ export default StyleSheet.create({
     right: -18,
     top: 5,
   },
+
+  // 点购成功模块
+  paySuccessArea: {
+    display: 'flex',
+    padding: 60
+},
+payContainer:{
+  width: '100%',
+  height: '100%',
+  padding: 20
+},
+paySuccessInfo:{
+  flexDirection: 'row',
+  justifyContent: 'center',
+  flexWrap:"wrap"
+},
+paySuccessInfoArea:{
+  width: '100%',
+  flexDirection: 'row',
+  justifyContent: 'center',
+  marginBottom: 15
+},
+paySuccessDetailArea:{
+  width: '100%',
+  flexDirection: 'row',
+  justifyContent: 'space-around'
+},
+paySuccessDetailText:{
+  fontSize: 20,
+  color: '#fff'
+},
+paySuccessText:{
+  fontSize: 28,
+  color: '#fff'
+},
+paySuccessList:{
+  width:'100%',
+  padding: 30,
+  overflow: 'hidden',
+
+},
+listItem: {
+  width: '100%',
+  borderBottomColor: '#52FFFF',
+  borderBottomWidth: 1,
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  paddingBottom: 10
+},
+itemLeftArea:{
+ flexDirection: 'row'
+}
 });
