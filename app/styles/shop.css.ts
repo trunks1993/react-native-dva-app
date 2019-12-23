@@ -161,12 +161,15 @@ export default StyleSheet.create({
   paySuccessArea: {
     width: '100%',
     height: '100%',
-    padding: 40,
+    // padding: ,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   payContainer: {
-    width: 1120,
-  height: 600,
-  padding: 20
+    width: 1124,
+    height: 663,
+    padding: 40
   },
   paySuccessInfo: {
     flexDirection: 'row',
@@ -194,6 +197,8 @@ export default StyleSheet.create({
   },
   paySuccessList: {
     // flex: 1,
+    width: 1044,
+    height: 372,
     padding: 30,
   },
   listItem: {
@@ -216,7 +221,8 @@ export default StyleSheet.create({
     padding: 80
   },
   waitStatusArea:{
-    height: 80,
+    height: 60,
+    marginBottom: 10,
     flexDirection: 'row',
     justifyContent: 'flex-end',
     alignItems: 'center'
@@ -237,7 +243,7 @@ export default StyleSheet.create({
     height: 146,
     flexDirection: 'row',
     flexWrap: 'nowrap',
-    marginBottom: 10
+    // marginBottom: 10
     // position: 'relative'
   },
   orderItem: {

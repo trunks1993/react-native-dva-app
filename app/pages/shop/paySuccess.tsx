@@ -15,6 +15,7 @@ import GlobalStyles, {ShopStyles} from 'styles/index.css';
 import Header from 'components/Header';
 import contPage from 'assets/images/contBg.png';
 import PaySuccessImg from 'assets/images/pay-success-img.png';
+import GoodsImage from 'assets/images/shop-img-instance.png';
 
 // 图片引入
 import bgPage from 'assets/images/bg-page.png';
@@ -96,13 +97,13 @@ class PaySuccess extends React.Component<PaySuccessProps> {
             <ImageBackground
               source={ListBackground}
               style={ShopStyles.paySuccessList}>
-              <ScrollView style={{height: 300}}>
+              <ScrollView style={{height: 270, overflow: 'hidden'}}>
                 {this.state.orderList.map(e => (
                   <View style={ShopStyles.listItem}>
                     <View style={ShopStyles.itemLeftArea}>
                       <Image
-                        style={{width: 80, height: 80}}
-                        source={PaySuccessImg}
+                        style={{width: 80, height: 80,marginRight: 5}}
+                        source={GoodsImage}
                       />
                       <Text
                         style={{
