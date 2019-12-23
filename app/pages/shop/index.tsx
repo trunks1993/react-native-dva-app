@@ -247,7 +247,8 @@ class Shop extends React.Component<ShopProps, ShopStates> {
         <Header replace={navigation.replace} title="商品点购" allowBack={true} backPage="Home" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
         <ImageBackground source={shopBgContent} style={ShopStyles.content}>
           <View style={ShopStyles.categoryBox}>
-            <FlatList data={categoryList} keyExtractor={item => item.categoryId} renderItem={({ item, index }) => (
+            <FlatList data={categoryList} keyExtractor={item => item.categoryId}
+            renderItem={({ item, index }) => (
               <TouchableOpacity onPress={() => this.handleSetSelectCategory(indexMap[item.categoryId], item.categoryId)}>
                 <View style={[selectCategory === item.categoryId ? ShopStyles.categoryItemActive : ShopStyles.categoryItem, isNextAdjoin(index) && ShopStyles.categoryItemAdjoinActiveNext, isPreAdjoin(index) && ShopStyles.categoryItemAdjoinActivePre]}>
                   <Text style={{ color: '#ffffff', fontSize: 20 }}>{item.categoryName}</Text>
@@ -273,7 +274,7 @@ class Shop extends React.Component<ShopProps, ShopStates> {
             <Text style={{ fontSize: 18, color: '#FF4400', marginLeft: 10 }}>￥</Text>
             <Text style={{ fontSize: 30, color: '#FF4400' }}>{totalPrice}</Text>
           </View>
-          <TouchableOpacity onPress={() => { navigation.navigate('Account') }}>
+          <TouchableOpacity onPress={() => { navigation.navigate('Pay') }}>
             <View style={ShopStyles.footBtn}>
               <Text style={{ color: '#ffffff', fontSize: 20 }}>去支付</Text>
             </View>

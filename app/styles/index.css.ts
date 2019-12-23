@@ -9,7 +9,7 @@ import SearchStyles from './search.css';
 import AwaitStyles from './await.css';
 import FaceStyles from './face.css';
 import ShopStyles from './shop.css';
-
+import CallStyles from './call.css';
 const GlobalStyles = StyleSheet.create({
     container: {
         flex: 1,
@@ -71,6 +71,6 @@ const GlobalStyles = StyleSheet.create({
     }
 })
 
-export { HomeStyles, NoticeStyles, WarmPromptStyles, FeelingStyles, LivingStyles, OrderStyles, SearchStyles, AwaitStyles, FaceStyles, ShopStyles };
+export { HomeStyles, NoticeStyles, WarmPromptStyles, FeelingStyles, LivingStyles, OrderStyles, SearchStyles, AwaitStyles, FaceStyles, ShopStyles ,CallStyles};
 
 export default GlobalStyles;

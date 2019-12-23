@@ -16,6 +16,8 @@ import homeBgBtn3 from 'assets/images/home-bg-btn3.png';
 import homeBgBtn4 from 'assets/images/home-bg-btn4.png';
 import homeBgBtn5 from 'assets/images/home-bg-btn5.png';
 import homeBgBtn6 from 'assets/images/home-bg-btn6.png';
+import homeBgBtn7 from 'assets/images/home-bg-btn7.png';
+
 import produce from 'immer';
 
 export interface HomeProps extends NavigationInjectedProps {
@@ -72,7 +74,7 @@ class Home extends React.Component<HomeProps> {
                   </TouchableOpacity>
                 </ImageBackground>
                 <ImageBackground source={homeBgBtn2} style={[HomeStyles.backImg, HomeStyles.marginLR100]}>
-                  <TouchableOpacity onPress={() => navigation.replace('Feeling')}>
+                  <TouchableOpacity onPress={() => navigation.replace('Face', { redirctPage: 'Feeling' })}>
                     <View style={HomeStyles.btnView}>
                       <Image style={HomeStyles.btnImg} source={require('assets/images/home-icon-btn2.png')} />
                       <Text style={[{ fontSize: 28, color: '#F7D454' }]}>每日心情</Text>
@@ -90,7 +92,7 @@ class Home extends React.Component<HomeProps> {
               </View>
               <View style={HomeStyles.buttonBox}>
                 <ImageBackground source={homeBgBtn4} style={HomeStyles.backImg}>
-                  <TouchableOpacity onPress={() => navigation.replace('Face')}>
+                  <TouchableOpacity onPress={() => navigation.replace('Face', { redirctPage: 'Order' })}>
                     <View style={HomeStyles.btnView}>
                       <Image style={HomeStyles.btnImg} source={require('assets/images/home-icon-btn4.png')} />
                       <Text style={[{ fontSize: 28, color: '#69DAD6' }]}>谈话预约</Text>
@@ -98,13 +100,26 @@ class Home extends React.Component<HomeProps> {
                   </TouchableOpacity>
                 </ImageBackground>
                 <ImageBackground source={homeBgBtn5} style={[HomeStyles.backImg, HomeStyles.marginLR100]}>
-                  <TouchableOpacity onPress={() => navigation.replace('Face')}>
+                  <TouchableOpacity onPress={() => navigation.replace('Face', { redirctPage: 'Search' })}>
                     <View style={HomeStyles.btnView}>
                       <Image style={HomeStyles.btnImg} source={require('assets/images/home-icon-btn5.png')} />
                       <Text style={[{ fontSize: 28, color: '#CB99FA' }]}>信息查询</Text>
                     </View>
                   </TouchableOpacity>
                 </ImageBackground>
+                <ImageBackground source={homeBgBtn7} style={HomeStyles.backImg}>
+                  <TouchableOpacity onPress={() => navigation.replace('Shop')}>
+                    <View style={HomeStyles.btnView}>
+                      <Image style={HomeStyles.btnImg} source={require('assets/images/home-icon-btn7.png')} />
+                      <Text style={[{ fontSize: 28, color: '#FBA163' }]}>商品点购</Text>
+                    </View>
+                  </TouchableOpacity>
+                </ImageBackground>
+              </View>
+            </View>
+
+            <View style={HomeStyles.page}>
+              <View style={HomeStyles.buttonBoxTop}>
                 <ImageBackground source={homeBgBtn6} style={HomeStyles.backImg}>
                   <TouchableOpacity onPress={() => navigation.replace('Living')}>
                     <View style={HomeStyles.btnView}>
@@ -113,6 +128,20 @@ class Home extends React.Component<HomeProps> {
                     </View>
                   </TouchableOpacity>
                 </ImageBackground>
+                <View style={[HomeStyles.backImg, HomeStyles.marginLR100]}></View>
+                <View style={HomeStyles.backImg}></View>
+              </View>
+              <View style={HomeStyles.buttonBoxTop}>
+                <ImageBackground source={homeBgBtn6} style={HomeStyles.backImg}>
+                  <TouchableOpacity onPress={() => navigation.replace('StartCommunicate')}>
+                    <View style={HomeStyles.btnView}>
+                      <Image style={HomeStyles.btnImg} source={require('assets/images/home-icon-btn6.png')} />
+                      <Text style={[{ fontSize: 28, color: '#FBA163' }]}>报警管理</Text>
+                    </View>
+                  </TouchableOpacity>
+                </ImageBackground>
+                <View style={[HomeStyles.backImg, HomeStyles.marginLR100]}></View>
+                <View style={HomeStyles.backImg}></View>
               </View>
             </View>
           </ScrollView>

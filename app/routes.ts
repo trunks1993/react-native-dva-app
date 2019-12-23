@@ -19,10 +19,13 @@ import Shop from 'pages/shop';
 import Account from 'pages/shop/account';
 import Pay from 'pages/shop/pay';
 import PaySuccess from 'pages/shop/paySuccess';
-
+import StartCommunicate from 'pages/call/startCommunicate';
+import Communicating from 'pages/call/Communicating';
 const Stack = createStackNavigator({
-  Shop,
+  Pay,
   Home,
+  Face,
+  Shop,
   Notice,
   NoticeDetail,
   WarmPrompt,
@@ -32,10 +35,10 @@ const Stack = createStackNavigator({
   Search,
   MyOrder,
   Await,
-  Face,
   Account,
-  Pay,
   PaySuccess,
+  StartCommunicate,
+  Communicating
 }, {
   defaultNavigationOptions: {
     header: null,
