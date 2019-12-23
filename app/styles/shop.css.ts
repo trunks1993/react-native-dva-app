@@ -3,11 +3,18 @@ import {StyleSheet} from 'react-native';
 export default StyleSheet.create({
   content: {
     width: 1120,
-    height: 601,
+    height: 600,
     marginLeft: 80,
     marginTop: 35,
     display: 'flex',
     flexDirection: 'row',
+  },
+  payContent: {
+    width: 1120,
+    height: 600,
+    marginLeft: 80,
+    marginTop: 35,
+    alignItems: 'center',
   },
   categoryBox: {
     width: 170,
@@ -67,9 +74,23 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+  orederItem: {
+    width: 1044,
+    height: 153,
+    padding: 22,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
   productItemImg: {
     width: 160,
     height: 160,
+  },
+  orderItemImg: {
+    width: 110,
+    height: 110,
   },
   productItemContent: {
     width: 198,
@@ -140,8 +161,8 @@ export default StyleSheet.create({
     padding: 60
 },
 payContainer:{
-  width: '100%',
-  height: '100%',
+  width: 1120,
+  height: 600,
   padding: 20
 },
 paySuccessInfo:{

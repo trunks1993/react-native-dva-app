@@ -21,8 +21,10 @@ import Pay from 'pages/shop/pay';
 import PaySuccess from 'pages/shop/paySuccess';
 
 const Stack = createStackNavigator({
-  Shop,
+  Pay,
   Home,
+  Face,
+  Shop,
   Notice,
   NoticeDetail,
   WarmPrompt,
@@ -32,9 +34,7 @@ const Stack = createStackNavigator({
   Search,
   MyOrder,
   Await,
-  Face,
   Account,
-  Pay,
   PaySuccess,
 }, {
   defaultNavigationOptions: {

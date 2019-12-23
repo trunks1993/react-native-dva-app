@@ -56,6 +56,7 @@ public class UsbFingerService extends Service {
 					intent.setAction(Constant.SEND_RYBH_ACTION);
 					intent.putExtra(Constant.PERSON_NUMBER, rybh);
 					sendBroadcast(intent);
+					FingerModule.sendEvent("finger",rybh);
 					break;
 
 				default:

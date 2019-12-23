@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { View, Text, Image, ImageBackground, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ImageBackground, ScrollView, TouchableOpacity, ToastAndroid } from 'react-native';
 import { NavigationInjectedProps } from "react-navigation";
-import { NativeModules } from "react-native";
+import { NativeModules, NativeEventEmitter } from "react-native";
 
 import { connect } from 'react-redux';
 import { ConnectState } from 'models/connect';
@@ -20,10 +20,23 @@ export interface FaceProps extends NavigationInjectedProps {
 class Face extends React.Component<FaceProps> {
   
   componentDidMount() {
-    NativeModules.FingerModule.registFinger((a, b, c, d) => {
-      console.warn(a,b,c,d);
-    }, () => {});
+    NativeModules.FingerModule.compare();
+    const eventEmitter = new NativeEventEmitter(NativeModules.FingerModule);
+    eventEmitter.addListener('finger', this.handleListenCallBack);
   }
+
+  componentWillUnmount() {
+    const eventEmitter = new NativeEventEmitter(NativeModules.FingerModule);
+    eventEmitter.removeListener('finger', this.handleListenCallBack);
+  }
+
+  handleListenCallBack = (event: any) => {
+    const { navigation } = this.props;
+    ToastAndroid.show("认证成功", ToastAndroid.SHORT);
+    const redirctPage = navigation.getParam('redirctPage');
+    navigation.replace(redirctPage);
+  }
+
   render() {
     const { navigation } = this.props;
     return (

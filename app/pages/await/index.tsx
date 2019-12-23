@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { View, Text, Image, ImageBackground, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ImageBackground, FlatList, TouchableOpacity, TouchableNativeFeedback } from 'react-native';
 import { NavigationInjectedProps } from "react-navigation";
 
 import { connect } from 'react-redux';
@@ -55,23 +55,28 @@ class Await extends React.Component<AwaitProps, AwaitStates> {
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
         <Header replace={navigation.replace} title="0502监室" allowBack={false} backPage="Notice" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
-        <View style={AwaitStyles.timeBox}>
-          <Text style={AwaitStyles.time}>15:20</Text>
-          <Text style={AwaitStyles.date}>2019年12月3日 星期二</Text>
-        </View>
-        <View style={AwaitStyles.content}>
-          <FlatList data={msgList} renderItem={({ item }) => (
-            <TouchableOpacity onPress={() => this.handleTo(item.type)}>
-              <View style={AwaitStyles.msgBox}>
-                <View style={AwaitStyles.titleBox}>
-                  <Image source={awaitIconNotice} />
-                  <Text style={AwaitStyles.msgTitle}>{item.title}</Text>
-                </View>
-                <Text style={AwaitStyles.msgContent}>{item.content}</Text>
-              </View>
-            </TouchableOpacity>
-          )} />
-        </View>
+        <TouchableNativeFeedback onPress={() => this.handleTo('Home')}>
+          <View>
+            <View style={AwaitStyles.timeBox}>
+              <Text style={AwaitStyles.time}>15:20</Text>
+              <Text style={AwaitStyles.date}>2019年12月3日 星期二</Text>
+            </View>
+            <View style={AwaitStyles.content}>
+              <FlatList data={msgList} renderItem={({ item }) => (
+                <TouchableOpacity onPress={() => this.handleTo(item.type)}>
+                  <View style={AwaitStyles.msgBox}>
+                    <View style={AwaitStyles.titleBox}>
+                      <Image source={awaitIconNotice} />
+                      <Text style={AwaitStyles.msgTitle}>{item.title}</Text>
+                    </View>
+                    <Text style={AwaitStyles.msgContent}>{item.content}</Text>
+                  </View>
+                </TouchableOpacity>
+              )} />
+            </View>
+          </View>
+
+        </TouchableNativeFeedback>
       </ImageBackground>
     )
   }
