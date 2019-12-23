@@ -15,7 +15,13 @@ import Search from 'pages/search';
 import MyOrder from 'pages/order/mine';
 import Await from 'pages/await';
 
+import Shop from 'pages/shop';
+import Account from 'pages/shop/account';
+import Pay from 'pages/shop/pay';
+import PaySuccess from 'pages/shop/paySuccess';
+
 const Stack = createStackNavigator({
+  Shop,
   Home,
   Notice,
   NoticeDetail,
@@ -26,6 +32,10 @@ const Stack = createStackNavigator({
   Search,
   MyOrder,
   Await,
+  Face,
+  Account,
+  Pay,
+  PaySuccess,
 }, {
   defaultNavigationOptions: {
     header: null,
