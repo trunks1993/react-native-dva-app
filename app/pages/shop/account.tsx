@@ -25,6 +25,8 @@ import Topay from 'assets/images/shop-order-topay.png';
 import btnTopay from 'assets/images/shop-pay-btn.png';
 import orderItembg from 'assets/images/shop-myorder-item-bg.png';
 import LikeBorder from 'assets/images/shop-order-likeborder.png';
+import GoodsImage from 'assets/images/shop-img-instance.png';
+
 export interface AccountProps {
   activeTab: string;
   isWaitPay: boolean;
@@ -58,7 +60,7 @@ class Account extends React.Component<AccountProps> {
         payTime: '2019-09-18 08:00:00',
         goodsImgList: [{src: Person}, {src: Person}],
         goodsTotal: 40,
-        status: 1,
+        status: 2,
       },
       {
         orderNum: '49841165401321231',
@@ -67,7 +69,7 @@ class Account extends React.Component<AccountProps> {
         payTime: '2019-09-18 08:00:00',
         goodsImgList: [],
         goodsTotal: 40,
-        status: 2,
+        status: 1,
       },
     ],
   };
@@ -155,7 +157,7 @@ class Account extends React.Component<AccountProps> {
               <ScrollView style={{height: 400}}>
                 {this.state.activeTab === 'TAB_BUY_LIST' &&
                   this.state.records.map((e: any) => (
-                    <View style={{marginBottom: e.status === 2  ? 0 : 80}}>
+                    <View style={{marginBottom: e.status === 2  ? 0 : 25}}>
                       <View style={ShopStyles.goodsItem}>
                         <ImageBackground
                           source={itemBorderBg}
@@ -186,7 +188,7 @@ class Account extends React.Component<AccountProps> {
                                   height: 77.6,
                                   marginRight: 15,
                                 }}
-                                source={Person}
+                                source={GoodsImage}
                               />
                             ))}
                           </View>
