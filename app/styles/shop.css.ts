@@ -161,15 +161,18 @@ export default StyleSheet.create({
   paySuccessArea: {
     width: '100%',
     height: '100%',
-    // padding: ,
+    paddingTop: 30,
+    // paddingBottom: 40,
     flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center'
+    // alignItems: 'center'
   },
   payContainer: {
     width: 1124,
-    height: 663,
-    padding: 40
+    height: 633,
+    paddingTop: 30,
+    paddingLeft: 40,
+    paddingRight: 40
   },
   paySuccessInfo: {
     flexDirection: 'row',
