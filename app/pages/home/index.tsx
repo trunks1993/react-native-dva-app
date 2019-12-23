@@ -62,7 +62,7 @@ class Home extends React.Component<HomeProps> {
             <Text style={GlobalStyles.font_52}>15:20</Text>
             <Text style={GlobalStyles.font_20}>2019年12月3日 星期二</Text>
           </View>
-          <ScrollView style={HomeStyles.scrollBox} horizontal={true}>
+          <ScrollView style={HomeStyles.scrollBox} showsHorizontalScrollIndicator = {false} horizontal={true}>
             <View style={HomeStyles.page}>
               <View style={HomeStyles.buttonBoxTop}>
                 <ImageBackground source={homeBgBtn1} style={HomeStyles.backImg}>

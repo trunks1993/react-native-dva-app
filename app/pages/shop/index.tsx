@@ -151,15 +151,15 @@ class Shop extends React.Component<ShopProps, ShopStates> {
     ],
     totalPrice: 0,
     carCount: 0,
-    selectCategory: '',
+    selectCategory: '1',
   }
 
   _flatList: React.ReactNode;
-  
+
   _getRef = (flatList) => {
-    this._flatList = flatList; 
-    const reObj = this._flatList; 
-    return reObj; 
+    this._flatList = flatList;
+    const reObj = this._flatList;
+    return reObj;
   }
 
   handleItemTotalPriceChange: (preItemTotalPrice: number, itemTotalPrice: number, countVal: number) => void = (preItemTotalPrice, itemTotalPrice, countVal) => {
@@ -171,7 +171,7 @@ class Shop extends React.Component<ShopProps, ShopStates> {
   };
 
   handleViewableItemsChange: (info: { viewableItems: any[]; changed: any[]; }) => void = (info) => {
-    if(info.viewableItems.length === 0) return;
+    if (info.viewableItems.length === 0) return;
     this.setState(produce((draft: Draft<ShopStates>, { }): void => {
       draft.selectCategory = info.viewableItems[0].item.categoryId;
     }));
@@ -183,23 +183,23 @@ class Shop extends React.Component<ShopProps, ShopStates> {
     }));
     this._flatList.scrollToIndex({ index: index / 2 });
   };
-  
+
 
   render() {
     const { navigation } = this.props;
     const { productList, totalPrice, carCount, categoryList, selectCategory } = this.state;
     const categoryMap = _.groupBy(productList, 'categoryId');
-    
+
     const sortFormatProductList = [];
     _.map(_.values(categoryMap), (currentValue: any[]) => {
       // 如果currentValue 数组长度为奇数就push一个对象进去
-      if(currentValue.length % 2 != 0) currentValue.push({ emptyView: true });
+      if (currentValue.length % 2 != 0) currentValue.push({ emptyView: true });
       _.map(currentValue, item => sortFormatProductList.push(item));
     })
 
     const indexMap = {};
     _.map(sortFormatProductList, (item, index) => {
-      if(item.categoryId && indexMap[item.categoryId] === undefined) indexMap[item.categoryId] = index;
+      if (item.categoryId && indexMap[item.categoryId] === undefined) indexMap[item.categoryId] = index;
     })
 
     const isNextAdjoin: (index: number) => boolean = (index) => {
@@ -213,7 +213,7 @@ class Shop extends React.Component<ShopProps, ShopStates> {
     }
 
     const product: React.FC<ProductItem> = (item) => {
-      if(item.emptyView) {
+      if (item.emptyView) {
         return <View style={ShopStyles.productItem}></View>
       }
       return (
@@ -245,20 +245,25 @@ class Shop extends React.Component<ShopProps, ShopStates> {
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
         <Header replace={navigation.replace} title="商品点购" allowBack={true} backPage="Home" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
-        <ImageBackground source={shopBgContent} style={ShopStyles.content}>
+        <TouchableOpacity onPress={() => navigation.replace('Face', { redirctPage: 'Account', backPage: 'Shop' })}>
+          <View style={{alignItems: 'flex-end', paddingRight: 96 }}>
+            <Text style={{ color: '#37C5E6', fontSize: 18 }}>账户中心</Text>
+          </View>
+        </TouchableOpacity>
+        <ImageBackground source={shopBgContent} style={[ShopStyles.content, {marginTop: 5}]}>
           <View style={ShopStyles.categoryBox}>
             <FlatList data={categoryList} keyExtractor={item => item.categoryId}
-            renderItem={({ item, index }) => (
-              <TouchableOpacity onPress={() => this.handleSetSelectCategory(indexMap[item.categoryId], item.categoryId)}>
-                <View style={[selectCategory === item.categoryId ? ShopStyles.categoryItemActive : ShopStyles.categoryItem, isNextAdjoin(index) && ShopStyles.categoryItemAdjoinActiveNext, isPreAdjoin(index) && ShopStyles.categoryItemAdjoinActivePre]}>
-                  <Text style={{ color: '#ffffff', fontSize: 20 }}>{item.categoryName}</Text>
-                </View>
-              </TouchableOpacity>
-            )} />
+              renderItem={({ item, index }) => (
+                <TouchableOpacity onPress={() => this.handleSetSelectCategory(indexMap[item.categoryId], item.categoryId)}>
+                  <View style={[selectCategory === item.categoryId ? ShopStyles.categoryItemActive : ShopStyles.categoryItem, isNextAdjoin(index) && ShopStyles.categoryItemAdjoinActiveNext, isPreAdjoin(index) && ShopStyles.categoryItemAdjoinActivePre]}>
+                    <Text style={{ color: '#ffffff', fontSize: 20 }}>{item.categoryName}</Text>
+                  </View>
+                </TouchableOpacity>
+              )} />
           </View>
           <View style={ShopStyles.productBox}>
             <View style={ShopStyles.titleBox}>
-              <Text style={ShopStyles.title}>冷冻冷藏</Text>
+              <Text style={ShopStyles.title}>{_.find(categoryList, item => item.categoryId === selectCategory).categoryName}</Text>
             </View>
             <View style={ShopStyles.product}>
               <FlatList ref={this._getRef} data={sortFormatProductList} columnWrapperStyle={{ justifyContent: 'space-between', marginBottom: 30 }} numColumns={2} horizontal={false} keyExtractor={item => item.productId} renderItem={({ item }) => product(item)} onViewableItemsChanged={this.handleViewableItemsChange} />

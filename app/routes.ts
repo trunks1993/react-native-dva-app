@@ -22,8 +22,8 @@ import PaySuccess from 'pages/shop/paySuccess';
 import StartCommunicate from 'pages/call/startCommunicate';
 import Communicating from 'pages/call/Communicating';
 const Stack = createStackNavigator({
-  Pay,
   Home,
+  Pay,
   Face,
   Shop,
   Notice,

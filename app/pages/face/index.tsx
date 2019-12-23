@@ -39,9 +39,10 @@ class Face extends React.Component<FaceProps> {
 
   render() {
     const { navigation } = this.props;
+    const backPage = navigation.getParam('backPage');
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
-        <Header replace={navigation.replace} title="认证" allowBack={true} backPage="Home" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
+        <Header replace={navigation.replace} title="认证" allowBack={true} backPage={backPage ? backPage : "Home"} titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
         <View style={FaceStyles.content}>
           <Image source={faceImgCard}/>
           <Image source={faceIconOr}/>

@@ -13,7 +13,7 @@ import { TAB_POLICE_MAN, TAB_PRISON_AREA_LEADER, TAB_PRISON_LEADER, TAB_CONTROL_
 import bgPage from 'assets/images/bg-page.png';
 import orderBgList from 'assets/images/order-bg-list.png';
 import orderBgHead from 'assets/images/order-bg-head.png';
-import systemImgHead from 'assets/images/system-img-head.png';
+import systemImgHead from 'assets/images/system-img-head2.png';
 
 import orderBgBtn from 'assets/images/order-bg-btn.png';
 import orderBgBtnActive from 'assets/images/order-bg-btn-active.png';

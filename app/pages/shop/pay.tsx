@@ -118,7 +118,7 @@ class Pay extends React.Component<PayProps, PayStates> {
             <Text style={{ fontSize: 18, color: '#FF4400', marginLeft: 10 }}>￥</Text>
             <Text style={{ fontSize: 30, color: '#FF4400' }}>2479</Text>
           </View>
-          <TouchableOpacity onPress={() => navigation.replace('Face', { redirctPage: 'PaySuccess' })}>
+          <TouchableOpacity onPress={() => navigation.replace('Face', { redirctPage: 'PaySuccess', backPage: 'Pay' })}>
             <View style={ShopStyles.footBtn}>
               <Text style={{ color: '#ffffff', fontSize: 20 }}>支付</Text>
             </View>

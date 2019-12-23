@@ -66,7 +66,7 @@ class PaySuccess extends React.Component<PaySuccessProps> {
           replace={navigation.replace}
           title="点购成功"
           allowBack={true}
-          backPage="Home"
+          backPage="Shop"
           titleRight="0502监室  |  2019年12月3日 星期二    15:20"
         />
         <View style={ShopStyles.paySuccessArea}>

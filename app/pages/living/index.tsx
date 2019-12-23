@@ -25,7 +25,9 @@ class Living extends React.Component<LivingProps> {
             <Text style={LivingStyles.time}>15:20</Text>
             <Text style={LivingStyles.date}>2019年12月3日 星期二</Text>
           </View>
-          <Image style={{marginLeft: 200}} source={livingImgHorn}/>
+          <TouchableOpacity onPress={() => navigation.replace('Home')}>
+            <Image style={{marginLeft: 200}} source={livingImgHorn}/>
+          </TouchableOpacity>
       </ImageBackground>
     )
   }

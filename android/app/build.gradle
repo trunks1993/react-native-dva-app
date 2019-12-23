@@ -144,10 +144,10 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            storeFile file('MYAPP_RELEASE_STORE_FILE')
+            storePassword '123456'
+            keyAlias 'MYAPP_RELEASE_KEY_ALIAS'
+            keyPassword '123456'
         }
     }
     buildTypes {
