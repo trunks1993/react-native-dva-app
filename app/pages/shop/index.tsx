@@ -273,7 +273,7 @@ class Shop extends React.Component<ShopProps, ShopStates> {
             <Text style={{ fontSize: 18, color: '#FF4400', marginLeft: 10 }}>￥</Text>
             <Text style={{ fontSize: 30, color: '#FF4400' }}>{totalPrice}</Text>
           </View>
-          <TouchableOpacity onPress={() => { }}>
+          <TouchableOpacity onPress={() => { navigation.navigate('PaySuccess') }}>
             <View style={ShopStyles.footBtn}>
               <Text style={{ color: '#ffffff', fontSize: 20 }}>去支付</Text>
             </View>

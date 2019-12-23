@@ -19,8 +19,15 @@ class Account extends React.Component<AccountProps> {
     const { navigation } = this.props;
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
-        <Header replace={navigation.replace} title="商品点购" allowBack={true} backPage="Home" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
-        
+        <Header replace={navigation.replace} title="账户中心" allowBack={true} backPage="Home" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
+        <View style={ShopStyles.accountArea}>
+          <View style={ShopStyles.personInfoArea}>
+
+          </View>
+          <View style={ShopStyles.goodsInfoArea}>
+
+          </View>
+        </View>
       </ImageBackground>
     )
   }
