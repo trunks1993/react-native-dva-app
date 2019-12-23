@@ -24,24 +24,40 @@ export interface PaySuccessProps extends NavigationInjectedProps {
 }
 
 class PaySuccess extends React.Component<PaySuccessProps> {
-  state={
-    orderList: [{
-      goodsImg: ListBackground,
-      goodsInfo: '船歌鱼水饺，速冻纯手工 包制舌尖海鲜饺子速食 ',
-      goodsPrice: '￥ 27.88',
-      goodTotal: '12'
-    },{
-      goodsImg: ListBackground,
-      goodsInfo: '船歌鱼水饺，速冻纯手工 包制舌尖海鲜饺子速食 ',
-      goodsPrice: '￥ 27.88',
-      goodTotal: '12'
-    },{
-      goodsImg: ListBackground,
-      goodsInfo: '船歌鱼水饺，速冻纯手工 包制舌尖海鲜饺子速食 ',
-      goodsPrice: '￥ 27.88',
-      goodTotal: '12'
-    }]
-  }
+  state = {
+    orderList: [
+      {
+        goodsImg: ListBackground,
+        goodsInfo: '船歌鱼水饺，速冻纯手工 包制舌尖海鲜饺子速食 ',
+        goodsPrice: '￥ 27.88',
+        goodTotal: '12',
+      },
+      {
+        goodsImg: ListBackground,
+        goodsInfo: '船歌鱼水饺，速冻纯手工 包制舌尖海鲜饺子速食 ',
+        goodsPrice: '￥ 27.88',
+        goodTotal: '12',
+      },
+      {
+        goodsImg: ListBackground,
+        goodsInfo: '船歌鱼水饺，速冻纯手工 包制舌尖海鲜饺子速食 ',
+        goodsPrice: '￥ 27.88',
+        goodTotal: '12',
+      },
+      {
+        goodsImg: ListBackground,
+        goodsInfo: '船歌鱼水饺，速冻纯手工 包制舌尖海鲜饺子速食 ',
+        goodsPrice: '￥ 27.88',
+        goodTotal: '12',
+      },
+      {
+        goodsImg: ListBackground,
+        goodsInfo: '船歌鱼水饺，速冻纯手工 包制舌尖海鲜饺子速食 ',
+        goodsPrice: '￥ 27.88',
+        goodTotal: '12',
+      },
+    ],
+  };
   render() {
     const {navigation} = this.props;
     return (
@@ -80,22 +96,32 @@ class PaySuccess extends React.Component<PaySuccessProps> {
             <ImageBackground
               source={ListBackground}
               style={ShopStyles.paySuccessList}>
-              <ScrollView style={{ height: 270}}>
-                {
-                  this.state.orderList.map(e => (
-                    <View style={ShopStyles.listItem}>
-                  <View style={ShopStyles.itemLeftArea}>
-                    <Image
-                      style={{width: 80, height: 80}}
-                      source={e.goodsImg}
-                    />
-  <Text style={{ width: 150, flexWrap: 'wrap',color:'#fff',fontSize: 14 }}>{e.goodsInfo}</Text>
+              <ScrollView style={{height: 300}}>
+                {this.state.orderList.map(e => (
+                  <View style={ShopStyles.listItem}>
+                    <View style={ShopStyles.itemLeftArea}>
+                      <Image
+                        style={{width: 80, height: 80}}
+                        source={PaySuccessImg}
+                      />
+                      <Text
+                        style={{
+                          width: 150,
+                          flexWrap: 'wrap',
+                          color: '#fff',
+                          fontSize: 14,
+                        }}>
+                        {e.goodsInfo}
+                      </Text>
+                    </View>
+                    <Text style={{color: '#fff', fontSize: 14}}>
+                      {e.goodsPrice}
+                    </Text>
+                    <Text style={{color: '#fff', fontSize: 14}}>
+                      *{e.goodTotal}
+                    </Text>
                   </View>
-                  <Text style={{ color:'#fff',fontSize: 14 }}>{e.goodsPrice}</Text>
-  <Text style={{ color:'#fff',fontSize: 14 }}>*{e.goodTotal}</Text>
-                </View>
-                  ))
-                }
+                ))}
               </ScrollView>
             </ImageBackground>
           </ImageBackground>

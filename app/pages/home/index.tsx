@@ -131,6 +131,18 @@ class Home extends React.Component<HomeProps> {
                 <View style={[HomeStyles.backImg, HomeStyles.marginLR100]}></View>
                 <View style={HomeStyles.backImg}></View>
               </View>
+              <View style={HomeStyles.buttonBoxTop}>
+                <ImageBackground source={homeBgBtn6} style={HomeStyles.backImg}>
+                  <TouchableOpacity onPress={() => navigation.replace('StartCommunicate')}>
+                    <View style={HomeStyles.btnView}>
+                      <Image style={HomeStyles.btnImg} source={require('assets/images/home-icon-btn6.png')} />
+                      <Text style={[{ fontSize: 28, color: '#FBA163' }]}>报警管理</Text>
+                    </View>
+                  </TouchableOpacity>
+                </ImageBackground>
+                <View style={[HomeStyles.backImg, HomeStyles.marginLR100]}></View>
+                <View style={HomeStyles.backImg}></View>
+              </View>
             </View>
           </ScrollView>
         </View>
