@@ -80,8 +80,6 @@ export default StyleSheet.create({
     padding: 22,
     display: 'flex',
     flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
     marginBottom: 20,
   },
   productItemImg: {
@@ -96,6 +94,10 @@ export default StyleSheet.create({
     width: 198,
     height: 160,
     // backgroundColor: 'red',
+  },
+  orderItemContent: {
+    marginLeft: 10,
+    justifyContent: 'space-between',
   },
   itemTitleBox: {
     height: 41,
