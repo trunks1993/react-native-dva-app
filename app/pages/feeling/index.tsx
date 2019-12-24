@@ -89,11 +89,22 @@ const vacation = {
 };
 
 export interface FeelingProps extends NavigationInjectedProps { }
+export interface FeelingStates {
+  select: number;
+}
 
-class Feeling extends React.Component<FeelingProps> {
+class Feeling extends React.Component<FeelingProps, FeelingStates> {
+  state: FeelingStates = {
+    select: 0,
+  };
   handleSubmit = () => {
     Alert.alert('提交成功')
   };
+  handleSelect = (sel) => {
+    this.setState({
+      select: sel,
+    })
+  }
 
   render() {
     const themeConfig = {
@@ -108,6 +119,8 @@ class Feeling extends React.Component<FeelingProps> {
     };
 
     const { navigation } = this.props;
+    const { select } = this.state;
+
     return (
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
         <ScrollView keyboardShouldPersistTaps='never' keyboardDismissMode="on-drag">
@@ -146,20 +159,20 @@ class Feeling extends React.Component<FeelingProps> {
             </ImageBackground>
             <View style={FeelingStyles.textAreaBox}>
               <View style={FeelingStyles.faceBox}>
-                <TouchableNativeFeedback onPress={() => {}}>
-                  <Image source={feelingIconHappy} />
+                <TouchableNativeFeedback onPress={() => this.handleSelect(1)}>
+                  <Image source={select === 1 ? feelingIconHappySelect : feelingIconHappy} />
                 </TouchableNativeFeedback>
                 <Text style={FeelingStyles.faceText}>开心</Text>
-                <TouchableNativeFeedback onPress={() => {}}>
-                  <Image source={feelingIconFear} />
+                <TouchableNativeFeedback onPress={() => this.handleSelect(2)}>
+                  <Image source={select === 2 ? feelingIconFearSelect : feelingIconFear} />
                 </TouchableNativeFeedback>
                 <Text style={FeelingStyles.faceText}>恐惧</Text>
-                <TouchableNativeFeedback onPress={() => {}}>
-                  <Image source={feelingIconAngry} />
+                <TouchableNativeFeedback onPress={() => this.handleSelect(3)}>
+                  <Image source={select === 3 ? feelingIconAngrySelect : feelingIconAngry} />
                 </TouchableNativeFeedback>
                 <Text style={FeelingStyles.faceText}>愤怒</Text>
-                <TouchableNativeFeedback onPress={() => {}}>
-                  <Image source={feelingIconSad} />
+                <TouchableNativeFeedback onPress={() => this.handleSelect(4)}>
+                  <Image source={select === 4 ? feelingIconSadSelect : feelingIconSad} />
                 </TouchableNativeFeedback>
                 <Text style={FeelingStyles.faceText}>悲伤</Text>
               </View>
