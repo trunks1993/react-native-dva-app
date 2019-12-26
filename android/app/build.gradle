@@ -182,6 +182,7 @@ dependencies {
     implementation project(':react-native-gesture-handler')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.facebook.react:react-native:+'
+    implementation 'com.google.code.gson:gson:2.8.2'
     // From node_modules
     // 如果你需要支持GIF动图
     implementation 'com.facebook.fresco:animated-gif:2.0.0'

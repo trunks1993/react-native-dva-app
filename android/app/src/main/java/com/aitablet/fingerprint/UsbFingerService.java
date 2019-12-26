@@ -14,204 +14,220 @@ import android.os.IBinder;
 import android.util.Log;
 
 import com.aitablet.Constant;
+import com.aitablet.utils.GsonUtils;
 import com.example.noemhost.FingerInfo;
 import com.example.noemhost.ZazdUtil;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.WritableMap;
+import com.google.gson.Gson;
 
 import java.util.List;
 
 public class UsbFingerService extends Service {
-	private static final String TAG = "UsbFingerService";
-	public static final String OPENFINGER = "OPEN_FINGER";//打开指纹广播
-	public static final String CLOSEFINGER = "CLOSE_FINGER";//关闭指纹广播
-	public static final String COMPAREFINGER = "COMPARE_FINGER";//开始比对广播
-	public static final String CANCELFINGER = "CANCEL_FINGER";//取消比对广播
-	public static final String REGISTER = "REGISTER_FINGER";//注册指纹广播
-	public static final String DELESOMEFINGER = "DELETE_SOMNEONE_FINGER";//删除某人广播
-	public static final String DELEALLFINGER = "DELETE_ALL_FINGER";//清除指纹广播
-	private ZazdUtil zazdUtil;
-	private Context context;
-	private ZaDao zaDao;
-	private FingerBinder fingerBinder = new FingerBinder();
-	private FingerBroadcastReceiver fingerBroadcastReceiver;
-	@SuppressLint("HandlerLeak")
-	private Handler myhandler = new Handler() {
-		public void handleMessage(android.os.Message msg) {
-			switch (msg.what) {
-				case 1001:
-					String id = msg.obj.toString();
-					String rybh = "";
-					ZaDao dao = new ZaDao(context);
-					Cursor Fcs = dao.queryTableAndShow();
-					int nums = 0;
-					boolean compareTrue = false;
-					while (Fcs.moveToNext()) {
-						if (Fcs.getString(0).equals(id)) {
-							Log.e("rybh", Fcs.getString(1));
-							rybh = Fcs.getString(1);
-							compareTrue = true;
-							break;
-						}
-					}
-					Intent intent = new Intent();
-					intent.setAction(Constant.SEND_RYBH_ACTION);
-					intent.putExtra(Constant.PERSON_NUMBER, rybh);
-					sendBroadcast(intent);
-					break;
+    private static final String TAG = "UsbFingerService";
+    public static final String OPENFINGER = "OPEN_FINGER";//打开指纹广播
+    public static final String CLOSEFINGER = "CLOSE_FINGER";//关闭指纹广播
+    public static final String COMPAREFINGER = "COMPARE_FINGER";//开始比对广播
+    public static final String CANCELFINGER = "CANCEL_FINGER";//取消比对广播
+    public static final String REGISTER = "REGISTER_FINGER";//注册指纹广播
+    public static final String DELESOMEFINGER = "DELETE_SOMNEONE_FINGER";//删除某人广播
+    public static final String DELEALLFINGER = "DELETE_ALL_FINGER";//清除指纹广播
+    private ZazdUtil zazdUtil;
+    private Context context;
+    private ZaDao zaDao;
+    private FingerBinder fingerBinder = new FingerBinder();
+    private FingerBroadcastReceiver fingerBroadcastReceiver;
+    @SuppressLint("HandlerLeak")
+    private Handler myhandler = new Handler() {
+        public void handleMessage(android.os.Message msg) {
+            switch (msg.what) {
+                case 1001:
+                    String id = msg.obj.toString();
+                    String rybh = "";
+                    ZaDao dao = new ZaDao(context);
+                    Cursor Fcs = dao.queryTableAndShow();
+                    int nums = 0;
+                    boolean compareTrue = false;
+                    while (Fcs.moveToNext()) {
+                        if (Fcs.getString(0).equals(id)) {
+                            Log.e("rybh", Fcs.getString(1));
+                            rybh = Fcs.getString(1);
+                            compareTrue = true;
+                            break;
+                        }
+                    }
+                    Intent intent = new Intent();
+                    intent.setAction(Constant.SEND_RYBH_ACTION);
+                    intent.putExtra(Constant.PERSON_NUMBER, rybh);
+                    sendBroadcast(intent);
 
-				default:
-					break;
-			}
-		};
-	};
+                    FingerModule.sendEvent("finger",rybh);
+                    break;
 
-	@Override
-	public void onCreate() {
+                default:
+                    break;
+            }
+        }
 
-		Log.e(TAG, "OnCreate");
-		context = getApplicationContext();
-		zaDao = new ZaDao(UsbFingerService.this);
-		zazdUtil = new ZazdUtil(context, myhandler);
-		zazdUtil.OnOpenDeviceBtn();
-		fingerBroadcastReceiver = new FingerBroadcastReceiver();
-		IntentFilter filter = new IntentFilter();
-		filter.addAction("reboot");
-		filter.addAction(Intent.ACTION_SCREEN_OFF);
-		filter.addAction(Intent.ACTION_SCREEN_ON);
-		filter.addAction(OPENFINGER);
-		filter.addAction(CLOSEFINGER);
-		filter.addAction(COMPAREFINGER);
-		filter.addAction(CANCELFINGER);
-		filter.addAction(REGISTER);
-		filter.addAction(DELESOMEFINGER);
-		filter.addAction(DELEALLFINGER);
-		registerReceiver(fingerBroadcastReceiver, filter);
+        ;
+    };
 
-	}
+    @Override
+    public void onCreate() {
 
-	@Override
-	public void onDestroy() {
-		// TODO Auto-generated method stub
-		// Log.e(TAG, zazdUtil.OnCloseDeviceBtn()+"");
-		super.onDestroy();
-	}
+        Log.e(TAG, "OnCreate");
+        context = getApplicationContext();
+        zaDao = new ZaDao(UsbFingerService.this);
+        zazdUtil = new ZazdUtil(context, myhandler);
+        zazdUtil.OnOpenDeviceBtn();
+        fingerBroadcastReceiver = new FingerBroadcastReceiver();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("reboot");
+        filter.addAction(Intent.ACTION_SCREEN_OFF);
+        filter.addAction(Intent.ACTION_SCREEN_ON);
+        filter.addAction(OPENFINGER);
+        filter.addAction(CLOSEFINGER);
+        filter.addAction(COMPAREFINGER);
+        filter.addAction(CANCELFINGER);
+        filter.addAction(REGISTER);
+        filter.addAction(DELESOMEFINGER);
+        filter.addAction(DELEALLFINGER);
+        registerReceiver(fingerBroadcastReceiver, filter);
+        //TODO 测试
+        Intent intent = new Intent(UsbFingerService.COMPAREFINGER);
+        sendBroadcast(intent);
+    }
 
-	public class FingerBinder extends Binder {
+    @Override
+    public void onDestroy() {
+        // TODO Auto-generated method stub
+        // Log.e(TAG, zazdUtil.OnCloseDeviceBtn()+"");
+        super.onDestroy();
+    }
 
-		public void open() {
-			Log.e(TAG, "open");
-		};
+    public class FingerBinder extends Binder {
 
-		public void compare() {
-			zazdUtil.OnVerifyMoreBtn();
-		};
+        public void open() {
+            Log.e(TAG, "open");
+        }
 
-		public void cancel() {
-			zazdUtil.cancel();
-		};
-	}
+        ;
 
-	private class FingerBroadcastReceiver extends BroadcastReceiver {
+        public void compare() {
+            zazdUtil.OnVerifyMoreBtn();
+        }
 
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			String action = intent.getAction();
-			if ("reboot".equals(action)) {
+        ;
 
-			} else if (Intent.ACTION_SCREEN_OFF.equals(action)) {
-				Log.e("息屏", "息屏");
-				zazdUtil.OnCloseDeviceBtn();
-			} else if (Intent.ACTION_SCREEN_ON.equals(action)) {
-				Log.e("息屏", "亮屏");
-			} else if (OPENFINGER.equals(action)) {
+        public void cancel() {
+            zazdUtil.cancel();
+        }
 
-			} else if (CLOSEFINGER.equals(action)) {
+        ;
+    }
 
-			} else if (COMPAREFINGER.equals(action)) {
-				if (zazdUtil.OnOpenDeviceBtn()) {
-					zazdUtil.OnVerifyMoreBtn();
-				} else {
-					Log.e(TAG, "指纹打开失败");
-				}
+    private class FingerBroadcastReceiver extends BroadcastReceiver {
 
-			} else if (CANCELFINGER.equals(action)) {
-				zazdUtil.cancel();
-			}else if (REGISTER.equals(action)) {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if ("reboot".equals(action)) {
 
-				Bundle bundle = intent.getExtras();
-				List<FingerInfo> finger = (List<FingerInfo>)bundle.get("PoliceFinger");
-				Log.e(TAG, finger.size()+"");
+            } else if (Intent.ACTION_SCREEN_OFF.equals(action)) {
+                Log.e("息屏", "息屏");
+                zazdUtil.OnCloseDeviceBtn();
+            } else if (Intent.ACTION_SCREEN_ON.equals(action)) {
+                Log.e("息屏", "亮屏");
+            } else if (OPENFINGER.equals(action)) {
 
-				for(FingerInfo info : finger){
-					String rybh = info.getRybh();
-					String fp = info.getFp();
-					String type = info.getType();
-					ZaFingerPrint(rybh, fp, type);
-				}
+            } else if (CLOSEFINGER.equals(action)) {
 
-			}else if(DELESOMEFINGER.equals(action)){
-				String policeId = intent.getStringExtra("policeId");
-				List<String> idList = zaDao.getId(policeId);
-				for(String str : idList){
-					if (zazdUtil.OnDeleteIDBtn(Integer.parseInt(str))) {
-						zaDao.deleteById(str);
-						Log.d(TAG, "删除表中数据id:"+ str);
-					}
-				}
-			}else if(DELEALLFINGER.equals(action)){
-				if(zazdUtil.OnDeleteAllBtn()){
-					zaDao.clearTable();
-					Log.d(TAG, "清楚表数据");
-				}else{
-					Log.e(TAG, "指纹设备清除数据失败");
-				}
-			}
+            } else if (COMPAREFINGER.equals(action)) {
+                if (zazdUtil.OnOpenDeviceBtn()) {
+                    zazdUtil.OnVerifyMoreBtn();
+                } else {
+                    Log.e(TAG, "指纹打开失败");
+                }
 
-		}
-	}
+            } else if (CANCELFINGER.equals(action)) {
+                zazdUtil.cancel();
+            } else if (REGISTER.equals(action)) {
+                String object = intent.getStringExtra("PoliceFinger");
+                Gson gson = new Gson();
+                List<FingerInfo> finger = gson.fromJson(object, GsonUtils.getListType(FingerInfo.class));
+                Log.e(TAG, finger.size() + "");
 
-	@Override
-	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
-		return fingerBinder;
-	}
+                for (FingerInfo info : finger) {
+                    String rybh = info.getRybh();
+                    String fp = info.getFp();
+                    String type = info.getType();
+                    ZaFingerPrint(rybh, fp, type);
+                }
 
-	private void ZaFingerPrint(String rybh, String fp, String type) {
-		Boolean isHas = false;
-		Cursor Fcs = zaDao.queryTableAndShow();
-		int nums = 0;
-		while (Fcs.moveToNext()) {
-			Log.e("zafinger", Fcs.getString(0) + "," + Fcs.getString(1) + "," + Fcs.getString(2));
-			if (Fcs.getString(2).equals(type) && Fcs.getString(1).equals(rybh)) {
-				isHas = true;
-				Log.e(TAG+rybh+"type="+type, "指纹已经存在" + "rybh:" + rybh + "type:" + type);
-				break;
-			}
-		}
-		if (!isHas) {
-			try {
-				int a = zaDao.insertFP(rybh, type);
-				if (a > 0) {
-					Log.e(TAG+rybh+"type="+type, "指纹表注册成功");
-					if (zazdUtil.OnOpenDeviceBtn()) {
-						if (zazdUtil.OnDownDate(a, 1, fp)) {
-							Log.e(TAG+rybh+"type="+type, "指纹入设备成功");
-						} else {
-							Log.e(TAG+rybh+"type="+type, "指纹入设备失败");
-							zaDao.deleteByRybh(rybh, type);
-						}
-					}else{
-						zaDao.deleteByRybh(rybh, type);
-					}
-					// if (!zazdUtil.OnCloseDeviceBtn()) {
-					// Log.e(TAG, "指纹关闭失败");
-					// } else {
-					// Log.e(TAG, "指纹关闭成功");
-					// }
-				}
-			} catch (Exception e) {
-				zaDao.deleteByRybh(rybh, type);
-			}
-		}
-	}
+            } else if (DELESOMEFINGER.equals(action)) {
+                String policeId = intent.getStringExtra("policeId");
+                List<String> idList = zaDao.getId(policeId);
+                for (String str : idList) {
+                    if (zazdUtil.OnDeleteIDBtn(Integer.parseInt(str))) {
+                        zaDao.deleteById(str);
+                        Log.d(TAG, "删除表中数据id:" + str);
+                    }
+                }
+            } else if (DELEALLFINGER.equals(action)) {
+                if (zazdUtil.OnDeleteAllBtn()) {
+                    zaDao.clearTable();
+                    Log.d(TAG, "清楚表数据");
+                } else {
+                    Log.e(TAG, "指纹设备清除数据失败");
+                }
+            }
+
+        }
+    }
+
+    @Override
+    public IBinder onBind(Intent intent) {
+        // TODO Auto-generated method stub
+        return fingerBinder;
+    }
+
+    private void ZaFingerPrint(String rybh, String fp, String type) {
+        Boolean isHas = false;
+        Cursor Fcs = zaDao.queryTableAndShow();
+        int nums = 0;
+        while (Fcs.moveToNext()) {
+            Log.e("zafinger", Fcs.getString(0) + "," + Fcs.getString(1) + "," + Fcs.getString(2));
+            if (Fcs.getString(2).equals(type) && Fcs.getString(1).equals(rybh)) {
+                isHas = true;
+                Log.e(TAG + rybh + "type=" + type, "指纹已经存在" + "rybh:" + rybh + "type:" + type);
+                break;
+            }
+        }
+        if (!isHas) {
+            try {
+                int a = zaDao.insertFP(rybh, type);
+                if (a > 0) {
+                    Log.e(TAG + rybh + "type=" + type, "指纹表注册成功");
+                    if (zazdUtil.OnOpenDeviceBtn()) {
+                        if (zazdUtil.OnDownDate(a, 1, fp)) {
+                            Log.e(TAG + rybh + "type=" + type, "指纹入设备成功");
+                        } else {
+                            Log.e(TAG + rybh + "type=" + type, "指纹入设备失败");
+                            zaDao.deleteByRybh(rybh, type);
+                        }
+                    } else {
+                        zaDao.deleteByRybh(rybh, type);
+                    }
+                    // if (!zazdUtil.OnCloseDeviceBtn()) {
+                    // Log.e(TAG, "指纹关闭失败");
+                    // } else {
+                    // Log.e(TAG, "指纹关闭成功");
+                    // }
+                }
+            } catch (Exception e) {
+                zaDao.deleteByRybh(rybh, type);
+            }
+        }
+    }
 
 }
