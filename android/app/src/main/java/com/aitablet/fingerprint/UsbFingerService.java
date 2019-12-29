@@ -8,7 +8,6 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Binder;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
@@ -17,8 +16,6 @@ import com.aitablet.Constant;
 import com.aitablet.utils.GsonUtils;
 import com.example.noemhost.FingerInfo;
 import com.example.noemhost.ZazdUtil;
-import com.facebook.react.bridge.Arguments;
-import com.facebook.react.bridge.WritableMap;
 import com.google.gson.Gson;
 
 import java.util.List;
@@ -60,8 +57,6 @@ public class UsbFingerService extends Service {
                     intent.setAction(Constant.SEND_RYBH_ACTION);
                     intent.putExtra(Constant.PERSON_NUMBER, rybh);
                     sendBroadcast(intent);
-
-                    FingerModule.sendEvent("finger",rybh);
                     break;
 
                 default:
@@ -93,9 +88,6 @@ public class UsbFingerService extends Service {
         filter.addAction(DELESOMEFINGER);
         filter.addAction(DELEALLFINGER);
         registerReceiver(fingerBroadcastReceiver, filter);
-        //TODO 测试
-        Intent intent = new Intent(UsbFingerService.COMPAREFINGER);
-        sendBroadcast(intent);
     }
 
     @Override
