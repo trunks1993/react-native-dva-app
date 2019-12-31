@@ -19,7 +19,9 @@ export interface StockCountProps {
   totalStock: number;
   price: number;
   minCount?: number;
-  onChange: (preItemTotalPrice: number, itemTotalPrice: number, countVal: number) => void;
+  goodsId: number;
+  initCount: number;
+  onChange: (preItemTotalPrice: number, itemTotalPrice: number, countVal: number, goodsId: number) => void;
 }
 
 export interface StockCountStates {
@@ -33,8 +35,11 @@ class StockCount extends React.Component<StockCountProps, StockCountStates> {
   }
 
   componentDidMount() {
-    const { minCount } = this.props;
-    if(minCount) {
+    const { minCount, initCount } = this.props;
+    this.setState(produce((draft: Draft<StockCountStates>, { }): void => {
+      draft.count = initCount;
+    }));
+    if(minCount && initCount < minCount) {
       this.setState(produce((draft: Draft<StockCountStates>, { }): void => {
         draft.count = minCount;
       }));
@@ -42,13 +47,13 @@ class StockCount extends React.Component<StockCountProps, StockCountStates> {
   }
 
   handleCountChange: (countVal: number) => void = (countVal) => {
-    const { totalStock, price, onChange, minCount } = this.props;
+    const { totalStock, price, onChange, minCount, goodsId } = this.props;
     const { count } = this.state;
     if(minCount && countVal === -1 && this.state.count === minCount) return ToastAndroid.show('数量不能少于' + count, ToastAndroid.SHORT);
     if(this.state.count === totalStock && countVal === 1) return ToastAndroid.show('已到最大库存', ToastAndroid.SHORT);
     this.setState(produce((draft: Draft<StockCountStates>, { }): void => {
       draft.count = draft.count + countVal;
-    }), () => onChange(count * price, (count + countVal) * price, countVal));
+    }), () => onChange(count * price, (count + countVal) * price, countVal, goodsId));
   }
 
   render() {

@@ -19,200 +19,185 @@ import shopImgCar from 'assets/images/shop-img-car.png';
 
 import { FlatList } from 'react-native-gesture-handler';
 import produce, { Draft } from 'immer';
+const token = 'eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..szka4dUeNuD7o2tT.bvMp3KnOeWPBqUb1vysoJY2aDjYP_77A7DSdqjh_hzhQb_y8DzpW2MSTBkOoYqhuYDVha32CB7rhwsnHdI1ZiXsYFkm2AEzHuJhcqUC6T303NKdr2cXK_iIdb6msDWKrqAO9-FAlUO2IBqF6K7m4v0GPF4_MyyFFyWLTphgaum6nRQYXX-0sYTiJtQDgMhezpOcmCEk-OrxC4q-s6yQSlAs_2cL82rSy3K_V9rDLXX3iEbFQrmm-zqq4HcBHH_SaTYDdQnMkRaZB0WmKSCIDhReiIB9-U2fpPEMXsjjndKzS4BVB9Q_Ft58TXVmS5muf5hbRhOGZ9GCIkC_8FuhRiRKuTvatVGdliboocGHeo7q4fPLUgjLsQJi5R6dBjCy7.Mc0UF-h0mXIgLA-v0Q9wrw'
+
+export async function getGoods(goodsType: string): Promise<any> {
+  try {
+    const response = await fetch(`http://192.168.0.110:8081/terminal/v1/goods/list?goodsType=${goodsType}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        token,
+      },
+    });
+    const data = await response.json();
+    return [null, data];
+  } catch (err) {
+    return [err]
+  }
+}
+
+export async function getGoodTypes(): Promise<any> {
+  try {
+    const response = await fetch('http://192.168.0.110:8081/terminal/v1/dictionaries/dictData/selectByDictType?dictType=goods_type', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        token,
+      },
+    });
+    const data = await response.json();
+    return [null, data];
+  } catch (err) {
+    return [err]
+  }
+}
+
+export async function count(): Promise<any> {
+  try {
+    const response = await fetch('http://192.168.0.110:8081/terminal/v1/shopping/count', {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        token,
+      },
+    });
+    const data = await response.json();
+    return [null, data];
+  } catch (err) {
+    return [err]
+  }
+}
+
+export async function add(goodsId: number, buyNum: number): Promise<any> {
+  try {
+    const response = await fetch(`http://192.168.0.110:8081/terminal/v1/shopping/add?goodsId=${goodsId}&buyNum=${buyNum}`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        token,
+      },
+    });
+    const data = await response.json();
+    return [null, data];
+  } catch (err) {
+    return [err]
+  }
+}
+
 
 export interface ShopProps extends NavigationInjectedProps {
 }
 
-export interface ProductItem {
-  title: string;
-  price: number;
-  stock: number;
-  productId: string;
-  imgUrl: string;
-  categoryId: string;
+export interface GoodsItem {
+  goodsId: number;
+  goodsMainImg: string;
+  goodsName: string;
+  goodsPrice: number;
+  goodsStock: number;
+  goodsType: number;
+  emptyView?: boolean;
+  shoppingCartId: string;
+  buyNum: number;
 }
 
 export interface CategoryItem {
-  categoryId: string;
-  categoryName: string;
+  dictLabel: string;
+  dictValue: string;
 }
 
 export interface ShopStates {
-  productList: ProductItem[];
+  Goods: GoodsItem[];
   totalPrice: number;
   carCount: number;
   selectCategory: string;
   categoryList: CategoryItem[];
 }
 
-
 class Shop extends React.Component<ShopProps, ShopStates> {
   state: ShopStates = {
-    productList: [
-      {
-        categoryId: '1',
-        title: '热销商品',
-        price: 68.88,
-        stock: 4,
-        productId: '1',
-        imgUrl: 'ttt.png',
-      }, {
-        categoryId: '2',
-        title: '休闲食品',
-        price: 68.88,
-        stock: 400,
-        productId: '2',
-        imgUrl: 'ttt.png',
-      }, {
-        categoryId: '1',
-        title: '热销商品',
-        price: 68.88,
-        stock: 400,
-        productId: '3',
-        imgUrl: 'ttt.png',
-      }, {
-        categoryId: '1',
-        title: '热销商品',
-        price: 68.88,
-        stock: 400,
-        productId: '4',
-        imgUrl: 'ttt.png',
-      }, {
-        categoryId: '2',
-        title: '休闲食品',
-        price: 68.88,
-        stock: 400,
-        productId: '5',
-        imgUrl: 'ttt.png',
-      }, {
-        categoryId: '2',
-        title: '休闲食品',
-        price: 68.88,
-        stock: 400,
-        productId: '6',
-        imgUrl: 'ttt.png',
-      }, {
-        categoryId: '3',
-        title: '冷冻冷藏',
-        price: 68.88,
-        stock: 400,
-        productId: '7',
-        imgUrl: 'ttt.png',
-      }, {
-        categoryId: '3',
-        title: '冷冻冷藏',
-        price: 68.88,
-        stock: 400,
-        productId: '8',
-        imgUrl: 'ttt.png',
-      }, {
-        categoryId: '4',
-        title: '洗化用品',
-        price: 68.88,
-        stock: 400,
-        productId: '9',
-        imgUrl: 'ttt.png',
-      }, {
-        categoryId: '5',
-        title: '纸类商品',
-        price: 68.88,
-        stock: 400,
-        productId: '10',
-        imgUrl: 'ttt.png',
-      }, {
-        categoryId: '6',
-        title: '生活用品',
-        price: 68.88,
-        stock: 400,
-        productId: '10',
-        imgUrl: 'ttt.png',
-      },
-    ],
-    categoryList: [
-      {
-        categoryId: '1',
-        categoryName: '热销商品',
-      }, {
-        categoryId: '2',
-        categoryName: '休闲食品',
-      }, {
-        categoryId: '3',
-        categoryName: '冷冻冷藏',
-      }, {
-        categoryId: '4',
-        categoryName: '洗化用品',
-      }, {
-        categoryId: '5',
-        categoryName: '纸类商品',
-      }, {
-        categoryId: '6',
-        categoryName: '生活用品',
-      },
-    ],
+    Goods: [],
+    categoryList: [],
     totalPrice: 0,
     carCount: 0,
-    selectCategory: '1',
+    selectCategory: '',
   }
 
   _flatList: React.ReactNode;
 
-  _getRef = (flatList) => {
+  _getRef = (flatList: React.ReactNode) => {
     this._flatList = flatList;
     const reObj = this._flatList;
     return reObj;
   }
 
-  handleItemTotalPriceChange: (preItemTotalPrice: number, itemTotalPrice: number, countVal: number) => void = (preItemTotalPrice, itemTotalPrice, countVal) => {
+  async componentDidMount() {
+    let [err, data] = await getGoodTypes();
+    if (!err) {
+      this.setState(produce((draft: Draft<ShopStates>, { }): void => {
+        draft.categoryList = data.data;
+      }));
+    }
+    this.getGoodsList();
+    [err, data] = await count();
+    if (!err) {
+      this.setState(produce((draft: Draft<ShopStates>, { }): void => {
+        draft.totalPrice = data.data.goodsPrice;
+        draft.carCount = data.data.buyNums;
+      }));
+    }
+  }
+
+  getGoodsList: () => void = async () => {
+    const { selectCategory } = this.state;
+    const [err, data] = await getGoods(selectCategory);
+    if (!err) {
+      this.setState(produce((draft: Draft<ShopStates>, { }): void => {
+        draft.Goods = data.data.rows;
+      }));
+    }
+  }
+
+  handleItemTotalPriceChange: (preItemTotalPrice: number, itemTotalPrice: number, countVal: number, goodsId: number) => void = (preItemTotalPrice, itemTotalPrice, countVal, goodsId) => {
     const changePrice = itemTotalPrice - preItemTotalPrice;
     this.setState(produce((draft: Draft<ShopStates>, { }): void => {
       draft.totalPrice += changePrice;
       draft.carCount += countVal;
-    }));
+    }), async () => {
+      const { carCount } = this.state;
+      const [err, data] = await add(goodsId, carCount);
+      console.log(data);
+    });
   };
 
-  handleViewableItemsChange: (info: { viewableItems: any[]; changed: any[]; }) => void = (info) => {
-    if (info.viewableItems.length === 0) return;
-    this.setState(produce((draft: Draft<ShopStates>, { }): void => {
-      draft.selectCategory = info.viewableItems[0].item.categoryId;
-    }));
-  };
-
-  handleSetSelectCategory: (index: string, categoryId: string) => void = (index, categoryId) => {
+  handleSetSelectCategory: (categoryId: string) => void = (categoryId) => {
     this.setState(produce((draft: Draft<ShopStates>, { }): void => {
       draft.selectCategory = categoryId;
-    }));
-    this._flatList.scrollToIndex({ index: index / 2 });
+    }), () => this.getGoodsList());
   };
 
 
   render() {
     const { navigation } = this.props;
-    const { productList, totalPrice, carCount, categoryList, selectCategory } = this.state;
-    const categoryMap = _.groupBy(productList, 'categoryId');
+    const { Goods, totalPrice, carCount, categoryList, selectCategory } = this.state;
 
-    const sortFormatProductList = [];
-    _.map(_.values(categoryMap), (currentValue: any[]) => {
-      // 如果currentValue 数组长度为奇数就push一个对象进去
-      if (currentValue.length % 2 != 0) currentValue.push({ emptyView: true });
-      _.map(currentValue, item => sortFormatProductList.push(item));
-    })
-
-    const indexMap = {};
-    _.map(sortFormatProductList, (item, index) => {
-      if (item.categoryId && indexMap[item.categoryId] === undefined) indexMap[item.categoryId] = index;
-    })
-
+    const selectCate = _.find(categoryList, (item: CategoryItem) => item.dictValue === selectCategory);
+    const title = selectCate ? selectCate.dictLabel : '全部';
     const isNextAdjoin: (index: number) => boolean = (index) => {
-      const activeCategoryIndex = categoryList.findIndex(item => selectCategory === item.categoryId);
+      const activeCategoryIndex = _.findIndex(categoryList, (item: CategoryItem) => selectCategory === item.dictValue);
       return index === activeCategoryIndex + 1;
     }
 
     const isPreAdjoin: (index: number) => boolean = (index) => {
-      const activeCategoryIndex = categoryList.findIndex(item => selectCategory === item.categoryId);
+      const activeCategoryIndex = _.findIndex(categoryList, (item: CategoryItem) => selectCategory === item.dictValue);
       return index === activeCategoryIndex - 1;
     }
 
-    const product: React.FC<ProductItem> = (item) => {
+    const product: React.FC<GoodsItem> = (item) => {
       if (item.emptyView) {
         return <View style={ShopStyles.productItem}></View>
       }
@@ -221,15 +206,15 @@ class Shop extends React.Component<ShopProps, ShopStates> {
           <Image source={shopImgInstance} style={ShopStyles.productItemImg} />
           <View style={ShopStyles.productItemContent}>
             <View style={ShopStyles.itemTitleBox}>
-              <Text style={ShopStyles.itemTitle} numberOfLines={2}>{item.title}</Text>
+              <Text style={ShopStyles.itemTitle} numberOfLines={2}>{item.goodsName}</Text>
             </View>
             <View style={ShopStyles.priceBox}>
               <Text style={{ fontSize: 18, color: '#FF4400' }}>￥</Text>
-              <Text style={{ fontSize: 30, color: '#FF4400' }}>{item.price}</Text>
+              <Text style={{ fontSize: 30, color: '#FF4400' }}>{item.goodsPrice}</Text>
             </View>
             <View style={ShopStyles.stockBox}>
-              <Text style={{ fontSize: 18, color: 'rgba(255,255,255,0.5)' }}>库存:{item.stock}份</Text>
-              <StockCount price={item.price} totalStock={item.stock} onChange={this.handleItemTotalPriceChange} />
+              <Text style={{ fontSize: 18, color: 'rgba(255,255,255,0.5)' }}>库存:{item.goodsStock}份</Text>
+              <StockCount initCount={item.buyNum} goodsId={item.goodsId} price={item.goodsPrice} totalStock={item.goodsStock} onChange={this.handleItemTotalPriceChange} />
             </View>
           </View>
         </ImageBackground>
@@ -246,27 +231,27 @@ class Shop extends React.Component<ShopProps, ShopStates> {
       <ImageBackground source={bgPage} style={GlobalStyles.container}>
         <Header replace={navigation.replace} title="商品点购" allowBack={true} backPage="Home" titleRight="0502监室  |  2019年12月3日 星期二    15:20" />
         <TouchableOpacity onPress={() => navigation.replace('Face', { redirctPage: 'Account', backPage: 'Shop' })}>
-          <View style={{alignItems: 'flex-end', paddingRight: 96 }}>
+          <View style={{ alignItems: 'flex-end', paddingRight: 96 }}>
             <Text style={{ color: '#37C5E6', fontSize: 18 }}>账户中心</Text>
           </View>
         </TouchableOpacity>
-        <ImageBackground source={shopBgContent} style={[ShopStyles.content, {marginTop: 5}]}>
+        <ImageBackground source={shopBgContent} style={[ShopStyles.content, { marginTop: 5 }]}>
           <View style={ShopStyles.categoryBox}>
-            <FlatList data={categoryList} keyExtractor={item => item.categoryId}
+            <FlatList data={categoryList} keyExtractor={item => item.dictValue}
               renderItem={({ item, index }) => (
-                <TouchableOpacity onPress={() => this.handleSetSelectCategory(indexMap[item.categoryId], item.categoryId)}>
-                  <View style={[selectCategory === item.categoryId ? ShopStyles.categoryItemActive : ShopStyles.categoryItem, isNextAdjoin(index) && ShopStyles.categoryItemAdjoinActiveNext, isPreAdjoin(index) && ShopStyles.categoryItemAdjoinActivePre]}>
-                    <Text style={{ color: '#ffffff', fontSize: 20 }}>{item.categoryName}</Text>
+                <TouchableOpacity onPress={() => this.handleSetSelectCategory(item.dictValue)}>
+                  <View style={[selectCategory === item.dictValue ? ShopStyles.categoryItemActive : ShopStyles.categoryItem, isNextAdjoin(index) && ShopStyles.categoryItemAdjoinActiveNext, isPreAdjoin(index) && ShopStyles.categoryItemAdjoinActivePre]}>
+                    <Text style={{ color: '#ffffff', fontSize: 20 }}>{item.dictLabel}</Text>
                   </View>
                 </TouchableOpacity>
               )} />
           </View>
           <View style={ShopStyles.productBox}>
             <View style={ShopStyles.titleBox}>
-              <Text style={ShopStyles.title}>{_.find(categoryList, item => item.categoryId === selectCategory).categoryName}</Text>
+              <Text style={ShopStyles.title}>{title}</Text>
             </View>
             <View style={ShopStyles.product}>
-              <FlatList ref={this._getRef} data={sortFormatProductList} columnWrapperStyle={{ justifyContent: 'space-between', marginBottom: 30 }} numColumns={2} horizontal={false} keyExtractor={item => item.productId} renderItem={({ item }) => product(item)} onViewableItemsChanged={this.handleViewableItemsChange} />
+              <FlatList ref={this._getRef} data={Goods} columnWrapperStyle={{ justifyContent: 'space-between', marginBottom: 30 }} numColumns={2} horizontal={false} keyExtractor={item => item.goodsId + ''} renderItem={({ item }) => product(item)} />
             </View>
           </View>
         </ImageBackground>
