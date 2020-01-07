@@ -21,7 +21,12 @@ import Pay from 'pages/shop/pay';
 import PaySuccess from 'pages/shop/paySuccess';
 import StartCommunicate from 'pages/call/startCommunicate';
 import Communicating from 'pages/call/Communicating';
+
 import Finger from 'pages/shop/finger';
+import Learning from 'pages/learning';
+import Book from 'pages/learning/Book';
+import Doc from 'pages/learning/Doc';
+import Video from 'pages/learning/Video';
 
 const Stack = createStackNavigator({
   Home,
@@ -42,6 +47,10 @@ const Stack = createStackNavigator({
   StartCommunicate,
   Communicating,
   Finger,
+  Learning,
+  Book,
+  Doc,
+  Video,
 }, {
   defaultNavigationOptions: {
     header: null,

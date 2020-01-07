@@ -100,10 +100,10 @@ class Home extends React.Component<HomeProps> {
                   </TouchableOpacity>
                 </ImageBackground>
                 <ImageBackground source={homeBgBtn5} style={[HomeStyles.backImg, HomeStyles.marginLR100]}>
-                  <TouchableOpacity onPress={() => navigation.replace('Face', { redirctPage: 'Search' })}>
+                  <TouchableOpacity onPress={() => navigation.replace('Learning', { redirctPage: 'Learning' })}>
                     <View style={HomeStyles.btnView}>
                       <Image style={HomeStyles.btnImg} source={require('assets/images/home-icon-btn5.png')} />
-                      <Text style={[{ fontSize: 28, color: '#CB99FA' }]}>信息查询</Text>
+                      <Text style={[{ fontSize: 28, color: '#CB99FA' }]}>技能学习</Text>
                     </View>
                   </TouchableOpacity>
                 </ImageBackground>

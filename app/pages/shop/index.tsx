@@ -146,8 +146,8 @@ class Shop extends React.Component<ShopProps, ShopStates> {
     [err, data] = await count();
     if (!err) {
       this.setState(produce((draft: Draft<ShopStates>, { }): void => {
-        draft.totalPrice = data.data.goodsPrice;
-        draft.carCount = data.data.buyNums;
+        draft.totalPrice = data?.data?.goodsPrice;
+        draft.carCount = data?.data?.buyNums;
       }));
     }
   }
@@ -157,7 +157,7 @@ class Shop extends React.Component<ShopProps, ShopStates> {
     const [err, data] = await getGoods(selectCategory);
     if (!err) {
       this.setState(produce((draft: Draft<ShopStates>, { }): void => {
-        draft.Goods = data.data.rows;
+        draft.Goods = data?.data?.rows;
       }));
     }
   }
