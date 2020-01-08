@@ -2,10 +2,7 @@ package com.aitablet;
 
 import androidx.annotation.NonNull;
 
-import com.aitablet.clock.AlarmModle;
-import com.aitablet.clock.PlayMusicModle;
-import com.aitablet.fingerprint.FingerModle;
-import com.aitablet.readcard.ReadCardModle;
+import com.aitablet.fingerprint.FingerModule;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -20,10 +17,7 @@ public class CustomPackage implements ReactPackage {
     public List<NativeModule> createNativeModules(
             ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
-        modules.add(new FingerModle(reactContext));
-        modules.add(new ReadCardModle(reactContext));
-        modules.add(new AlarmModle(reactContext));
-        modules.add(new PlayMusicModle(reactContext));
+        modules.add(new FingerModule(reactContext));
         return modules;
     }
 
