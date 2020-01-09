@@ -27,6 +27,8 @@ import Learning from 'pages/learning';
 import Book from 'pages/learning/Book';
 import Doc from 'pages/learning/Doc';
 import Video from 'pages/learning/Video';
+import VideoList from 'pages/learning/VideoList';
+import VideoPlay from 'pages/learning/VideoPlay';
 
 const Stack = createStackNavigator({
   Home,
@@ -51,6 +53,8 @@ const Stack = createStackNavigator({
   Book,
   Doc,
   Video,
+  VideoList,
+  VideoPlay,
 }, {
   defaultNavigationOptions: {
     header: null,

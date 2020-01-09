@@ -6,8 +6,11 @@ import android.content.Intent;
 
 import com.aitablet.fp_core.FingerManager;
 import com.aitablet.readcard.ReadSerialService;
+import com.aitablet.fingerprint.UsbFingerService;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.brentvatne.react.ReactVideoPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
@@ -23,7 +26,6 @@ public class MainApplication extends Application implements ReactApplication {
                 public boolean getUseDeveloperSupport() {
                     return BuildConfig.DEBUG;
                 }
-
                 @Override
                 protected List<ReactPackage> getPackages() {
                     @SuppressWarnings("UnnecessaryLocalVariable")
@@ -51,7 +53,7 @@ public class MainApplication extends Application implements ReactApplication {
         FingerManager.getInstance();
         SoLoader.init(this, /* native exopackage */ false);
         initializeFlipper(this); // Remove this line if you don't want Flipper enabled
-        startService(new Intent(this, ReadSerialService.class));
+        startService(new Intent(this, UsbFingerService.class));
     }
 
     /**

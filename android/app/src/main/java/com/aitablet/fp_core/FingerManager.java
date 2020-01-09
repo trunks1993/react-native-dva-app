@@ -2,7 +2,6 @@ package com.aitablet.fp_core;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
@@ -218,7 +217,7 @@ public class FingerManager {
 
             Bitmap image = BitmapFactory.decodeByteArray(m_bmpImage, 0, nSize);
 
-            if (mRegisterFpCallback != null) {
+            if (mDeviceCallback != null) {
                 mRegisterFpCallback.onShowFpImage(image);
             }
         }
@@ -240,7 +239,7 @@ public class FingerManager {
     private Runnable verifyFpFeedbackTask = new Runnable() {
         public void run() {
             if (mVerifyFpFeedback != null) {
-                mVerifyFpFeedback.onVerifyResult(mFeedbackInfo.getCode(), mFeedbackInfo.getMessage());
+                mCaptureCallback.onCaptureResult(mFeedbackInfo.getCode(), mFeedbackInfo.getMessage());
             }
         }
     };
@@ -248,7 +247,7 @@ public class FingerManager {
     /**
      * 初始化设备
      */
-    public void initDevice(Context context) {
+    public void initDevice(Activity context) {
         if (m_usbComm == null) {
             m_usbComm = new DevComm(context.getApplicationContext(), m_IConnectionHandler);
         }
@@ -681,41 +680,6 @@ public class FingerManager {
         }).start();
     }
 
-
-    public boolean deleteById(int id) {
-        int w_nRet;
-
-        if (!m_usbComm.IsInit())
-            return false;
-
-        if (id > 500 || id < 0) {
-            return false;
-        }
-
-        w_nRet = m_usbComm.Run_DelChar(id, id);
-
-        if (w_nRet != DevComm.ERR_SUCCESS) {
-            Log.e(TAG, "id:" + id + "Delete false !");
-            return false;
-        }
-        Log.e(TAG, "id:" + id + "Delete OK !");
-        return true;
-    }
-
-    public boolean deleteAll() {
-        int w_nRet;
-
-        if (!m_usbComm.IsInit())
-            return false;
-
-        w_nRet = m_usbComm.Run_DelChar(1, 500);
-
-        if (w_nRet != DevComm.ERR_SUCCESS) {
-            return false;
-        }
-
-        return true;
-    }
 
     public void release() {
         m_usbComm.CloseComm();
