@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
+import com.aitablet.fp_core.FingerManager;
 import com.aitablet.readcard.ReadSerialService;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
@@ -47,6 +48,7 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        FingerManager.getInstance();
         SoLoader.init(this, /* native exopackage */ false);
         initializeFlipper(this); // Remove this line if you don't want Flipper enabled
         startService(new Intent(this, ReadSerialService.class));
