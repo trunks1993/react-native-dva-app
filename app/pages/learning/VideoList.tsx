@@ -26,7 +26,7 @@ const token = 'eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiZGlyIn0..szka4dUe
 
 export async function getList(skillTypeId: number | string): Promise<any> {
   try {
-    const response = await fetch(`http://192.168.0.110:8081/terminal/v1/skillLearning/selectLearningType?learningType=2&skillTypeId=${skillTypeId}`, {
+    const response = await fetch(`http://192.168.0.119:8081/terminal/v1/skillLearning/selectLearningType?learningType=2&skillTypeId=${skillTypeId}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -42,7 +42,7 @@ export async function getList(skillTypeId: number | string): Promise<any> {
 
 export async function getCategory(): Promise<any> {
   try {
-    const response = await fetch('http://192.168.0.110:8081/terminal/v1/device/treeType/selectAll?treeType=6', {
+    const response = await fetch('http://192.168.0.119:8081/terminal/v1/device/treeType/selectAll?treeType=6', {
       method: 'GET',
       headers: {
         Accept: 'application/json',
@@ -59,7 +59,7 @@ export async function getCategory(): Promise<any> {
 
 export async function add(goodsId: number, buyNum: number): Promise<any> {
   try {
-    const response = await fetch(`http://192.168.0.110:8081/terminal/v1/shopping/add?goodsId=${goodsId}&buyNum=${buyNum}`, {
+    const response = await fetch(`http://192.168.0.119:8081/terminal/v1/shopping/add?goodsId=${goodsId}&buyNum=${buyNum}`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
