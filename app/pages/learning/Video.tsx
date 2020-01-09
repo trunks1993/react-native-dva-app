@@ -194,7 +194,7 @@ class Video extends React.Component<VideoProps, VideoStates> {
             <View style={LearningStyles.stockBox}>
               <Text style={{ fontSize: 18, color: 'rgba(255,255,255,0.5)' }}>共{item.stock}个视频</Text>
             </View>
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => navigation.replace('VideoList', { skillTypeId: item.skillTypeId })}>
               <ImageBackground source={bgBtn} style={LearningStyles.bookItem}>
                 <Image source={iconPlay} />
                 <Text style={{fontSize: 22, color: '#ffffff', marginLeft: 10}}>播放</Text>

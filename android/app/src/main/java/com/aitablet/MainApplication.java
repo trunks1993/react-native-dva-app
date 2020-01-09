@@ -7,6 +7,7 @@ import android.content.Intent;
 import com.aitablet.fingerprint.UsbFingerService;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.brentvatne.react.ReactVideoPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
